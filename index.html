@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="img/favico.png" />
+
+    <title>Médical Santa Cruz</title>
+    <!-- Estilo para el Header-->
+    <link rel="stylesheet" href="css/styleHeader.css" />
+    <!-- Estilo para el body -->
+    <link rel="stylesheet" href="css/home/styleBody.css" />
+    <!-- Estilo para el Footer -->
+    <link rel="stylesheet" href="css/styleFooter.css" />
+
+    <!--Para la union de Font Awsome-->
+    <script
+      src="https://kit.fontawesome.com/b72784143d.js"
+      crossorigin="anonymous"
+    ></script>
+    <!--Para la union de boxicons.com-->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <!--La fuente de la letra popins-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--Link para la Union con el Swiper-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
+    />
+  </head>
+  <body>
+    <!-- Empieza la cabecera -->
+    <header>
+      <a href="#" class="logo">
+        <img src="img/logo.jpeg" alt="MEDICAL SANTA CRUZ" />
+      </a>
+      <ul class="navBar">
+        <li><a href="index.html" class="activo">Inicio</a></li>
+        <li><a href="about.html">Acerca de Nosostros</a></li>
+        <li>
+          <div class="comboBox">
+            <div class="comboBox-seleccion">
+              <span class="seleccion">Productos</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="comboBox-lista">
+              <div class="comoBox-lista_item">
+                <a href="productosVenta.html">Productos en Venta</a>
+              </div>
+              <div class="comoBox-lista_item">
+                <a href="productosRenta.html">Productos en Renta</a>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li><a href="contactUs.html">Contacto</a></li>
+        <div class="search-container">
+          <form action="" class="search-bar">
+            <input type="text" placeholder="Buscar..." id="textfilm" />
+            <div class="icono">
+              <i class="fa fa-search icono"></i>
+            </div>
+          </form>
+        </div>
+      </ul>
+      <div>
+        <div class="main">
+          <a href="carritoCompras.html" class="usuario">
+            <i class="fa-solid fa-cart-shopping"></i>Carrito</a
+          >
+          <div class="bx bx-menu" id="menu-icon"></div>
+        </div>
+      </div>
+    </header>
+    <!--Termina la cabecera-->
+
+    <main>
+      <!--Empieza el hero section-->
+      <section class="banner">
+        <div class="container banner-contenedor">
+          <div class="banner_info">
+            <h1 class="banner_titulo">MEDICAL SANTA CRUZ</h1>
+            <p class="baner_text">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Aspernatur, delectus.
+            </p>
+            <div class="banner_botones">
+              <div class="banner_boton">
+                <a href="#" class="btn"><button>Productos en Venta</button></a>
+              </div>
+              <div class="banner_boton">
+                <a href="#" class="btn"><button>Productos en Renta</button></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--Termina el hero section-->
+
+      <!-- Empieza la seccion de Lista Categorias -->
+      <section class="categorias">
+        <div class="container">
+          <div class="content">
+            <div class="categorias-txt texto">
+              <h2>CATEGORIAS</h2>
+              <a href="#">Ver Todas</a>
+            </div>
+            <div class="container-card">
+              <div class="card">
+                <di class="img-card">
+                  <img src="img/silla de ruedas.png" alt="" />
+                </di>
+                <div class="card-txt">
+                  <a href="#">Movilidad</a
+                  ><span class="icon">
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </span>
+                </div>
+              </div>
+              <div class="card">
+                <di class="img-card">
+                  <img src="img/ortopedia.png" alt="" />
+                </di>
+                <div class="card-txt">
+                  <a href="#">Cuidado Personal</a
+                  ><span class="icon">
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </span>
+                </div>
+              </div>
+              <div class="card">
+                <di class="img-card">
+                  <img src="img/insumos medicos.png" alt="" />
+                </di>
+                <div class="card-txt">
+                  <a href="#">Insumos Medicos</a
+                  ><span class="icon">
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </span>
+                </div>
+              </div>
+              <div class="card">
+                <di class="img-card">
+                  <img src="img/silla de ruedas.png" alt="" />
+                </di>
+                <div class="card-txt">
+                  <a href="#">Ortopedia Blanda</a
+                  ><span class="icon">
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--Termina la seccion de Lista Categorias -->
+
+      <!--Empieza la seccion de Slider  de los productos destacados-->
+      <section class="destacados">
+        <div class="container">
+          <div class="content">
+            <div class="swiper-txt texto">
+              <h2>Destacados</h2>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab
+                accusantium, error optio dolorum sit rerum quasi esse deserunt
+                reiciendis sapiente, ea, dolores animi unde minima.
+              </p>
+            </div>
+            <div class="swiper-container">
+              <div class="swiper mySwiper">
+                <div class="swiper-wrapper slider">
+                  <div class="swiper-slide">
+                    <div class="card-swiper">
+                      <div class="swiper-card-img">
+                        <img src="img/muletas.png" alt="" />
+                      </div>
+                      <div class="swiper-card-txt">
+                        <h3>Muletas</h3>
+                        <div class="card-precios">
+                          <p>$1500</p>
+                          <del>$1700</del>
+                        </div>
+                        <a href="#" class="card-boton"
+                          ><button>Agregar</button></a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="card-swiper">
+                      <div class="swiper-card-img">
+                        <img src="img/cubrebocas.png" alt="" />
+                      </div>
+                      <div class="swiper-card-txt">
+                        <h3>Cubrebocas</h3>
+                        <div class="card-precios">
+                          <p>$300</p>
+                          <del>$320</del>
+                        </div>
+                        <a href="#" class="card-boton"
+                          ><button>Agregar</button></a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="card-swiper">
+                      <div class="swiper-card-img">
+                        <img src="img/silla de ruedas.png" alt="" />
+                      </div>
+                      <div class="swiper-card-txt">
+                        <h3>Silla de Ruedas</h3>
+                        <div class="card-precios">
+                          <p>$300</p>
+                        </div>
+                        <a href="#" class="card-boton"
+                          ><button>Agregar</button></a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="card-swiper">
+                      <div class="swiper-card-img">
+                        <img src="img/silla de ruedas.png" alt="" />
+                      </div>
+                      <div class="swiper-card-txt">
+                        <h3>Silla de Ruedas</h3>
+                        <div class="card-precios">
+                          <p>$300</p>
+                        </div>
+                        <a href="#" class="card-boton"
+                          ><button>Agregar</button></a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swiper-slide">
+                    <div class="card-swiper">
+                      <div class="swiper-card-img">
+                        <img src="img/silla de ruedas.png" alt="" />
+                      </div>
+                      <div class="swiper-card-txt">
+                        <h3>Silla de Ruedas</h3>
+                        <div class="card-precios">
+                          <p>$300</p>
+                        </div>
+                        <a href="#" class="card-boton"
+                          ><button>Agregar</button></a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-button-next swiper-btn"></div>
+              <div class="swiper-button-prev swiper-btn"></div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Termina el seccion de Slider  de los productos destacados-->
+
+      <!--Empieza la seccion de Nosotros-->
+      <section class="nosotros">
+        <div class="container">
+          <div class="nosotros-contenido content">
+            <div class="nosotros-img">
+              <div class="nosotros-img-container">
+                <img src="img/img-nosotros.jpg" alt="" />
+              </div>
+
+              <div class="circulo"></div>
+            </div>
+            <div class="nosotros-txt texto">
+              <h2>Medical Santa Cruz</h2>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum,
+                ipsam quidem expedita vero excepturi doloremque deserunt quia
+                sed unde natus odit ipsum obcaecati distinctio nam cupiditate,
+                consequuntur velit quo eius?
+              </p>
+              <a href="about.html" class="btn"><button>Conocer mas</button></a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--Termina la seccion de Nosotros -->
+      <!--Inicia la seccion del Mapa -->
+      <section class="mapa">
+        <div class="container-map">
+          <div id="map" style="height: 400px"></div>
+          <script
+            async
+            defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKheVSYlmj7EGoeuzfYvQXyA0pttjpmMQ&callback=initMap"
+          ></script>
+        </div>
+      </section>
+      <!--Termina la seccion del Mapa-->
+    </main>
+    <!--Empeiza la seccion del footer-->
+    <footer>
+      <div class="container">
+        <div class="content footer-container">
+          <a href="#"><img src="img/logo.jpeg" alt="" /></a>
+          <div class="content-contactanos">
+            <h3>Contactanos</h3>
+            <p>Canatlan, Canatlan, Durango</p>
+            <ul>
+              <li>
+                <a href="#">6188357943</a>
+              </li>
+              <li>
+                <a href="#">contacto@meidcalservicios.com</a>
+              </li>
+            </ul>
+
+            <div class="sociales">
+              <a href="#"><i class="fa-brands fa-facebook"></i></a>
+              <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+              <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+          </div>
+          <div class="nosotros-container">
+            <h3>Sobre Nosotros</h3>
+            <ul>
+              <li><a href="#">¿Quienes Somos?</a></li>
+              <li><a href="#">Mision y Vision</a></li>
+              <li><a href="#">Terminos y Condiciones</a></li>
+              <li><a href="#">Informacion para clientes</a></li>
+            </ul>
+          </div>
+          <div class="pagos-container">
+            <h3>Metodos de Pago</h3>
+            <ul>
+              <li><a href="#">Transferencias Bancarias</a></li>
+              <li><a href="#">Pago Directo</a></li>
+              <li><a href="#">Compras en Mercado Libre</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!--Termina la seccion del footer-->
+  </body>
+
+  <!-- Link de Java Script para el header-->
+  <script src="js/script.js"></script>
+  <!--Link de la Union con el Swipper-->
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: true,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      breakpoints: {
+        620: {
+          slidesPerView: 1,
+          spaceBetween: 20,
+        },
+        680: {
+          slidesPerView: 1,
+          spaceBetween: 40,
+        },
+        920: {
+          slidesPerView: 2,
+          spaceBetween: 60,
+        },
+        1240: {
+          slidesPerView: 3,
+          spaceBetween: 50,
+        },
+      },
+    });
+  </script>
+</html>

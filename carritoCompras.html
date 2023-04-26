@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Médical Santa Cruz</title>
+    <link rel="shortcut icon" href="img/favico.png" />
+
+    <!-- Estilo para el navHead-->
+    <link rel="stylesheet" href="css/styleHeader.css" />
+    <!-- Estilo para el body -->
+    <link rel="stylesheet" href="css/home/styleCarrito.css" />
+    <!-- Estilo para el Footer -->
+    <link rel="stylesheet" href="css/styleFooter.css" />
+
+    <!--Para la union de Font Awsome-->
+    <script
+      src="https://kit.fontawesome.com/b72784143d.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!--Para la union de boxicons.com-->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <!--Para la union de JQuery UI-->
+    <link
+      rel="stylesheet"
+      href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  </head>
+  <body>
+    <!-- Empieza la cabecera -->
+    <header>
+      <a href="index.html" class="logo">
+        <img src="img/logo.jpeg" alt="MEDICAL SANTA CRUZ" />
+      </a>
+      <ul class="navBar">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="about.html">Acerca de Nosostros</a></li>
+        <li>
+          <div class="comboBox">
+            <div class="comboBox-seleccion">
+              <span class="seleccion">Productos</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="comboBox-lista">
+              <div class="comoBox-lista_item">
+                <a href="productosVenta.html">Productos en Venta</a>
+              </div>
+              <div class="comoBox-lista_item">
+                <a href="carritoCompras.html" >Productos en Renta</a>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li><a href="contactUs.html">Contacto</a></li>
+        <div class="search-container">
+          <form action="" class="search-bar">
+            <input type="text" placeholder="Buscar..." id="textfilm" />
+            <div class="icono">
+              <i class="fa fa-search icono"></i>
+            </div>
+          </form>
+        </div>
+      </ul>
+      <div>
+        <div class="main">
+          <a href="#" class="usuario">
+            <i class="fa-solid fa-cart-shopping"></i>Carrito</a
+          >
+          <div class="bx bx-menu" id="menu-icon"></div>
+        </div>
+      </div>
+    </header>
+    <!--Termina la cabecera-->
+
+    <main>
+      <!--Empieza la seccion del Banner-->
+      <section class="banner">
+        <div class="container">
+          <div class="banner-text">
+            <div class="banner-nav">
+              <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li>></li>
+                <li><a href="#">Carrito</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--Termina la seccion del Banner-->
+
+      <!--Empieza la seccion del Contenedor principal-->
+      <section class="shop">
+        <div class="container">
+          <div class="shop-contenedor content">
+            <div class="carrito-container">
+              <div class="carrito-texto">
+                <div class="carrito-titulo">
+                  <i class="fa-solid fa-cart-shopping"></i>
+                  <h2>Carrito de Compra</h2>
+                </div>
+                <p>Tienes <strong>5</strong> producto(s) en tu carrito</p>
+              </div>
+              <div class="carrito-table">
+                <table class="tabla">
+                  <thead>
+                    <tr>
+                      <th>Producto</th>
+                      <th>Precio</th>
+                      <th>Cantidad</th>
+                      <th>Precio Unitario</th>
+                      <th>Precio Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="producto">
+                          <img src="img/cubrebocas.png" alt="" />
+                          <a href="#">Cubrebocas</a>
+                        </div>
+                      </td>
+                      <td>5.99</td>
+                      <td>
+                        <div class="cantidad">
+                          <button>+</button>
+                          <input type="text" name="" id="" value="1" />
+                          <button>-</button>
+                        </div>
+                      </td>
+                      <td>5.99</td>
+                      <td>5.99</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="producto">
+                          <img src="img/cubrebocas.png" alt="" />
+                          <a href="#">Cubrebocas</a>
+                        </div>
+                      </td>
+                      <td>5.99</td>
+                      <td>
+                        <div class="cantidad">
+                          <button>+</button>
+                          <input type="text" name="" id="" value="1" />
+                          <button>-</button>
+                        </div>
+                      </td>
+                      <td>5.99</td>
+                      <td>5.99</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="producto">
+                          <img src="img/cubrebocas.png" alt="" />
+                          <a href="#">Cubrebocas</a>
+                        </div>
+                      </td>
+                      <td>5.99</td>
+                      <td>
+                        <div class="cantidad">
+                          <button>+</button>
+                          <input type="text" name="" id="" value="1" />
+                          <button>-</button>
+                        </div>
+                      </td>
+                      <td>5.99</td>
+                      <td>5.99</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="resumen">
+              <div class="resumen-contendedor">
+                <h2>Resumen de tu Compra</h2>
+                <button class="botonPagar">Ir a Pagar</button>
+                <hr>
+                <div class="linea">
+                  <span class="resumen-txt">5 productos</span>
+                  <span class="cantidad"><strong>$2340</strong></span>
+                </div>
+              <div class="linea">
+                <span class="resumen-txt">Costo de Envio</span>
+                <span class="cantidad">$2340</span>
+              </div>
+               <hr>
+                <div class="linea">
+                  <span class="resumen-txt total">Total (Iva Incluido)</span>
+                  <p class="cantidad total-pagar">$2340</p>
+                </div>
+                <button class="botonPagar">Ir a Pagar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!--Empeiza la seccion del footer-->
+    <footer>
+      <div class="container">
+        <div class="content footer-container">
+          <a href="#"><img src="img/logo.jpeg" alt="" /></a>
+          <div class="content-contactanos">
+            <h3>Contactanos</h3>
+            <p>Canatlan, Canatlan, Durango</p>
+            <ul>
+              <li>
+                <a href="#">6188357943</a>
+              </li>
+              <li>
+                <a href="#">contacto@meidcalservicios.com</a>
+              </li>
+            </ul>
+
+            <div class="sociales">
+              <a href="#"><i class="fa-brands fa-facebook"></i></a>
+              <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+              <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+          </div>
+          <div class="nosotros-container">
+            <h3>Sobre Nosotros</h3>
+            <ul>
+              <li><a href="#">¿Quienes Somos?</a></li>
+              <li><a href="#">Mision y Vision</a></li>
+              <li><a href="#">Terminos y Condiciones</a></li>
+              <li><a href="#">Informacion para clientes</a></li>
+            </ul>
+          </div>
+          <div class="pagos-container">
+            <h3>Metodos de Pago</h3>
+            <ul>
+              <li><a href="#">Transferencias Bancarias</a></li>
+              <li><a href="#">Pago Directo</a></li>
+              <li><a href="#">Compras en Mercado Libre</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!--Termina la seccion del footer-->
+  </body>
+  <script src="js/script.js"></script>
+  <script src="js/scriptAbout.js"></script>
+</html>

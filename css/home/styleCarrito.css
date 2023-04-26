@@ -1,0 +1,225 @@
+main {
+  background-color: white;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+main a {
+  text-decoration: none;
+}
+
+.content {
+  padding: 40px;
+}
+
+.texto {
+  padding: 30px 40px;
+}
+
+/* Estilos para la seccion Banner */
+.banner {
+  padding-top: 100px;
+  width: 100%;
+  position: relative;
+  background: var(--fondo-primero);
+}
+
+.banner-text {
+  padding: 20px 40px;
+}
+
+.banner-nav ul {
+  list-style: none;
+}
+
+.banner-nav li {
+  display: inline;
+  margin-right: 5px;
+}
+
+.banner-nav a {
+  color: black;
+}
+.banner-nav a:hover {
+  text-decoration: underline;
+}
+
+/* Estilos para la seccion shop */
+.shop-contenedor {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* -----ESTILOS PARA EL DIV DEL CARRITO----- */
+.carrito-container {
+  width: 65%;
+  padding-bottom: 10px;
+}
+
+.carrito-texto {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.carrito-texto .carrito-titulo i,
+h2 {
+  display: inline;
+  vertical-align: middle;
+}
+.carrito-texto .carrito-titulo i {
+  margin-right: 10px;
+}
+.carrito-table {
+  border-radius: 10px;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.4);
+}
+
+.carrito-table .tabla {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla thead {
+  width: 100%;
+  border-bottom: 0.01rem solid var(--fondo-primero);
+}
+
+.tabla th {
+  font-size: 15px;
+  font-weight: 400;
+  text-align: left;
+  padding: 20px 20px;
+}
+
+.tabla tr {
+  border-bottom: 0.01rem solid var(--fondo-primero);
+}
+
+.tabla td {
+  font-size: 15px;
+  font-weight: 400;
+  text-align: left;
+  padding: 30px 20px;
+}
+
+.tabla tr:last-child {
+  border: none;
+}
+
+.tabla .producto {
+  display: flex;
+  align-items: center;
+}
+
+.tabla .producto img {
+  width: 50px;
+  margin-right: 10px;
+}
+
+.tabla .producto img:hover {
+  cursor: pointer;
+}
+
+.tabla a {
+  color: black;
+}
+
+.tabla a:hover {
+  text-decoration: underline;
+}
+
+.tabla .cantidad {
+  display: inline-block;
+}
+
+.tabla .cantidad button {
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  height: 25px;
+  width: 25px;
+  border-radius: 10px;
+  color: var(--card-boton);
+  transition: all 1s;
+  border: none;
+}
+.tabla .cantidad button:hover {
+  color: white;
+  background-color: var(--card-boton);
+  transition-duration: 0.5s;
+}
+
+.tabla .cantidad input[type="text"] {
+  border-radius: 5px;
+  border: 2px solid var(--card-hover);
+  font-size: 18px;
+  background-color: transparent;
+  display: inline-block;
+  width: 30px;
+  padding: 0px 10px;
+  text-align: center;
+  margin: 0px 10px;
+}
+
+/* Esto es para el div filtros */
+.resumen {
+  width: 30%;
+}
+
+.resumen-contendedor {
+  border-radius: 10px;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.4);
+  padding: 10px 20px;
+}
+
+.resumen-contendedor h2{
+  font-weight: 300;
+}
+
+.resumen-contendedor .botonPagar{
+  width: 100%;
+  font-size: 15px;
+  font-weight: 500;
+  color: white;
+  padding: 10px 30px;
+  background: var(--card-hover);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 1.4s;
+  margin: 15px 0px;
+}
+
+.resumen-contendedor .botonPagar:hover{
+  background-color: var(--card-boton);
+  transition-duration: 0.5s;
+}
+
+
+.linea {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.resumen-txt {
+
+  text-align: left;
+}
+
+.cantidad {
+  text-align: right;
+}
+
+.linea .total{
+  font-weight: 500;
+}
+
+.total-pagar{
+  font-size: 25px;
+  font-weight: 700;
+  color: var(--card-hover)
+}

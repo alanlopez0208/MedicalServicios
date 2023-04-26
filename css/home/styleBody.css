@@ -1,0 +1,383 @@
+main {
+  background-color: white;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.content {
+  padding: 40px;
+}
+
+.texto {
+  padding: 30px 40px;
+}
+
+/**---------------ESTILO PARA EL HERO SECTION-------------------*/
+.banner {
+  width: 100%;
+  height: 500px;
+  background: url("/img/heroImage.jpg") fixed bottom/ cover;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner::before {
+  content: "";
+  height: 100%;
+  width: 100%;
+  background-color: #4c5c5c;
+  opacity: 0.7;
+}
+
+.banner-contenedor {
+  margin-top: 80px;
+  position: absolute;
+  width: 100%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+}
+
+.banner_info {
+  padding: 0.3rem;
+  position: absolute;
+  width: 100%;
+  max-width: 700px;
+  color: white;
+  padding-right: 50px;
+}
+
+.banner_titulo {
+  line-height: 1.5;
+  font-size: 50px;
+}
+
+.baner_text {
+  font-weight: 100;
+  line-height: 2;
+  font-size: 20px;
+  font-family: sans-serif;
+}
+
+.banner_botones {
+  margin-top: 15px;
+  margin-left: 20px;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.btn button {
+  font-size: 15px;
+  font-weight: 600;
+  color: white;
+  padding: 10px 30px;
+  background: #384947;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 1.4s;
+}
+
+.btn button:hover {
+  background-color: #2e3c3a;
+}
+
+/*----------ESTILOS PARA LA SECCION DE CATEGORIAS--------------*/
+.categorias {
+  background-color: #e6e6e6;
+}
+
+.categorias-txt {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 1000;
+}
+
+.categorias-txt h2 {
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.categorias-txt a {
+  font-weight: 500;
+  color: black;
+}
+
+.container-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  margin: 10px 30px;
+  display: block;
+}
+
+.img-card {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  background-color: whitesmoke;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.img-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.8s ease-in-out;
+}
+
+.card:hover img {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.card-txt {
+  margin-top: 10px;
+  text-align: center;
+  transition-duration: 0.5s;
+}
+
+.card-txt a {
+  color: var(--card-hover);
+  font-weight: 600;
+}
+.card-txt i {
+  color: var(--card-boton);
+  font-weight: 600;
+}
+
+.card-txt span {
+  color: var(--card-boton);
+  opacity: 0;
+  transition-duration: 1s;
+}
+
+.card:hover .card-txt {
+  transform: translateX(-10px);
+  transition-duration: 1s;
+}
+.card:hover .card-txt a {
+  color: var(--card-boton);
+  transition-duration: 1s;
+}
+
+.card:hover .card-txt span,
+.card-txt i {
+  color: var(--card-boton);
+  opacity: 1;
+  transition-duration: 1s;
+}
+
+/* ------- ESTILO PARA EL APARTADO DE PRODUCTOS DESTACADOS ------------*/
+
+.swiper-txt h2 {
+  text-transform: uppercase;
+  padding-bottom: 10px;
+  font-weight: 800;
+}
+.swiper-txt p {
+  line-height: 1.5;
+}
+
+.swiper-container {
+  position: relative;
+  z-index: 99;
+}
+
+.mySwiper.swiper {
+  display: flex;
+  justify-content: center;
+  width: 90%;
+}
+
+.mySwiper.slider {
+  width: 100%;
+}
+
+.mySwiper .swiper-slide {
+  margin: 30px 0px;
+}
+
+.card-swiper {
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.4);
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+}
+
+.swiper-card-img {
+  overflow: hidden;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.swiper-card-img img {
+  width: 100%;
+}
+
+.swiper-card-txt {
+  width: 80%;
+}
+
+.swiper-card-txt h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin: 10px 0;
+}
+
+.card-precios {
+  display: flex;
+  align-items: center;
+}
+
+.swiper-card-txt .card-precios p {
+  font-size: 30px;
+  font-weight: 300;
+  color: #2b4642;
+  margin-bottom: 10px;
+}
+
+.swiper-card-txt .card-precios del {
+  margin: 10px;
+  text-decoration: line-through;
+  font-weight: 300;
+  color: gray;
+}
+
+.card-boton button {
+  width: 100%;
+  font-size: 15px;
+  font-weight: 500;
+  color: white;
+  padding: 10px 30px;
+  background: var(--card-hover);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 1.4s;
+  margin-bottom: 15px;
+}
+.card-boton button:hover {
+  background-color: var(--card-boton);
+  transition-duration: 0.5s;
+}
+
+.swiper-container .swiper-btn {
+  position: absolute;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+  height: 150px;
+  width: 50px;
+  border-radius: 10px;
+  color: var(--card-boton);
+  top: 35%;
+  transition: all 1s;
+}
+.swiper-container .swiper-btn:hover {
+  color: white;
+  background-color: var(--card-boton);
+  transition-duration: 0.5s;
+}
+
+.swiper-container .swiper-button-next {
+  right: 0;
+}
+.swiper-container .swiper-button-prev {
+  left: 0;
+}
+
+/*--------------- ESTILOS PARA LA SECCION NOSOTROS ----------------*/
+.nosotros {
+  background-color: var(--fondo-primero);
+}
+.nosotros-contenido {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.nosotros-img {
+  border-radius: 15px;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.nosotros-img-container {
+  width: 600px;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+}
+
+.nosotros-img img {
+  position: absolute;
+  border-radius: 15px;
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+}
+
+.circulo {
+  position: absolute;
+  background: linear-gradient(to right, #99ccdc, #8ba9b3, #6882b2);
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  top: 45%;
+  left: -10%;
+  z-index: 2;
+}
+
+.nosotros-txt {
+  flex: 1;
+}
+
+.nosotros-txt h2 {
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.nosotros-txt p {
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.nosotros-txt .btn button {
+  background-color: var(--card-boton);
+}
+.nosotros-txt .btn button:hover {
+  background-color: var(--card-hover);
+}
+
+/*---PARA EL DISEÑO RESPONSIVO----*/
+
+@media (max-width: 1090px) {
+  .btn button {
+    margin-top: 20px;
+  }
+}

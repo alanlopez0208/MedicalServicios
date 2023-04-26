@@ -1,0 +1,278 @@
+main {
+  background-color: white;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+main a {
+  text-decoration: none;
+}
+
+.content {
+  padding: 40px;
+}
+
+.texto {
+  padding: 30px 40px;
+}
+
+/* Estilos para la seccion Banner */
+.banner {
+  width: 100%;
+  height: 230px;
+  background: url("/img/background\ products.jpg") bottom/cover;
+  position: relative;
+}
+
+.banner-text {
+  padding-top: 120px;
+}
+
+.banner-nav ul {
+  list-style: none;
+  margin-bottom: 25px;
+}
+
+.banner-nav li {
+  display: inline;
+  margin-right: 5px;
+}
+
+.banner-nav a {
+  color: black;
+}
+.banner-nav a:hover {
+  text-decoration: underline;
+}
+
+/* Estilos para la seccion shop */
+.shop-contenedor {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Esto es para el div filtros */
+.filtros {
+  width: 30%;
+}
+
+.filtros-contenedor {
+  border-radius: 10px;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.4);
+}
+
+.filtros-contenedor .filtro-card {
+  cursor: pointer;
+  max-width: 100%;
+  padding: 10px;
+}
+
+.filtros-contenedor .filtro-titulo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+.filtros-contenedor .filtro-titulo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filtros-contenedor .filtro-titulo a {
+  font-size: 25px;
+  color: black;
+  font-weight: 300;
+}
+
+#chevron-up {
+  display: none;
+}
+
+.filtros-contenedor .separador {
+  width: 100%;
+  height: 0.1rem;
+  background-color: var(--fondo-primero);
+}
+
+.filtros-contenedor .filtros-checkbox {
+  padding: 0px 20px;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.5s ease;
+  margin-bottom: 20px;
+}
+
+.filtros-contenedor .filtros-checkbox ul {
+  list-style: none;
+}
+
+.filtros-contenedor .filtros-checkbox li {
+  margin: 15px 0;
+}
+
+.filtros-checkbox #slider-range {
+  margin: 15px 0px;
+}
+
+.filtros-checkbox p {
+  text-align: center;
+}
+
+.filtros-checkbox input[type="text"] {
+  font-size: 17px;
+  width: 50%;
+  border: none;
+  font-weight: bold;
+}
+
+#slider-range {
+  height: 10px;
+  background-color: var(--fondo-primero);
+  border-radius: 50px;
+}
+
+#slider-mano {
+  background-color: var(--card-boton);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  top: -100%;
+}
+
+#slider-mano:active {
+  border: none;
+  transform: scale(1.1);
+}
+
+#slider-range .ui-slider-range {
+  background-color: gray;
+}
+
+/* Aqui va a hacer para que cuando se de clic en la lista de categorias se abra */
+.filtros-contenedor .filtros-checkbox.active {
+  max-height: 300px;
+  transition: 0.5s;
+}
+
+/* -----Estilos para Prodcutos-container */
+.productos-container {
+  width: 65%;
+}
+/* ---------Estilos es para el div card-Container -----------*/
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.card-swiper {
+  margin: 0px 10px;
+  border-radius: 10px;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.4);
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+}
+
+.swiper-card-img {
+  overflow: hidden;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.swiper-card-img img {
+  width: 100%;
+}
+
+.swiper-card-txt {
+  margin-top: 15px;
+  width: 80%;
+}
+
+.swiper-card-txt a {
+  font-size: 20px;
+  font-weight: 500;
+  color: #333;
+  text-decoration: none;
+}
+
+.card-precios {
+  display: flex;
+}
+
+.swiper-card-txt .card-precios p {
+  font-size: 30px;
+  font-weight: 300;
+  color: #2b4642;
+  margin-bottom: 10px;
+}
+
+.swiper-card-txt .card-precios del {
+  margin: 10px;
+  text-decoration: line-through;
+  font-weight: 300;
+  color: gray;
+}
+
+.card-boton button {
+  width: 100%;
+  font-size: 15px;
+  font-weight: 500;
+  color: white;
+  padding: 10px 30px;
+  background: var(--card-hover);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 1.4s;
+  margin-bottom: 15px;
+}
+
+.card-boton button:hover {
+  background-color: var(--card-boton);
+  transition-duration: 0.5s;
+}
+
+/* ------------ESTILOS PARA LA PAGINATION---- */
+.pagination {
+  margin: 40px 0;
+  border-radius: 10px;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 25px 20px;
+}
+
+.page {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.page li {
+  margin: 0px 5px;
+  padding: 5px 10px;
+  border-radius: 50%;
+  color: black;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.page a:hover li {
+  background: var(--fondo-primero);
+}
+
+.page a.active li {
+  background: var(--card-boton);
+}

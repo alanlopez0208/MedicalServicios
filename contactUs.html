@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Médical Santa Cruz</title>
+    <link rel="shortcut icon" href="img/favico.png" />
+
+    <!-- Estilo para el navHead-->
+    <link rel="stylesheet" href="css/styleHeader.css" />
+    <!-- Estilo para el body -->
+    <link rel="stylesheet" href="css/home/styleContactUs.css" />
+    <!-- Estilo para el Footer -->
+    <link rel="stylesheet" href="css/styleFooter.css" />
+
+    <!--Para la union de Font Awsome-->
+    <script
+      src="https://kit.fontawesome.com/b72784143d.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!--Para la union de boxicons.com-->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Empieza la cabecera -->
+    <header>
+      <a href="index.html" class="logo">
+        <img src="img/logo.jpeg" alt="MEDICAL SANTA CRUZ" />
+      </a>
+      <ul class="navBar">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="about.html">Acerca de Nosostros</a></li>
+        <li>
+          <div class="comboBox">
+            <div class="comboBox-seleccion">
+              <span class="seleccion">Productos</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="comboBox-lista">
+              <div class="comoBox-lista_item">
+                <a href="productosVenta.html">Productos en Venta</a>
+              </div>
+              <div class="comoBox-lista_item">
+                <a href="productosRenta.html">Productos en Renta</a>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li><a href="#" class="activo">Contacto</a></li>
+        <div class="search-container">
+          <form action="" class="search-bar">
+            <input type="text" placeholder="Buscar..." id="textfilm" />
+            <div class="icono">
+              <i class="fa fa-search icono"></i>
+            </div>
+          </form>
+        </div>
+      </ul>
+      <div>
+        <div class="main">
+          <a href="carritoCompras.html" class="usuario">
+            <i class="fa-solid fa-cart-shopping"></i>Carrito</a
+          >
+          <div class="bx bx-menu" id="menu-icon"></div>
+        </div>
+      </div>
+    </header>
+    <!--Termina la cabecera-->
+    <main>
+      <section class="formulario">
+        <div class="container-formulario">
+          <div class="big-circle"></div>
+          <div class="form">
+            <div class="contact-info">
+              <h2 class="title">Nosotros</h2>
+              <p class="text">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem
+                distinctio dolorem voluptatum, incidunt, quod necessitatibus
+                sit.
+              </p>
+              <div class="info">
+                <div class="information">
+                  <i class="fa-solid fa-location-dot icon"></i>
+                  <p>Avenida Juarez, Canatlan, Durango 34555</p>
+                </div>
+                <div class="information">
+                  <i class="fa-solid fa-envelope icon"></i>
+                  <p>lorem@ipsum.com</p>
+                </div>
+                <div class="information">
+                  <i class="fa-solid fa-phone icon"></i>
+                  <p>123-456-789</p>
+                </div>
+                <div class="social-media">
+                  <p>Connect with us :</p>
+                  <div class="social-icons">
+                    <a href="#">
+                      <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#">
+                      <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                    <a href="#">
+                      <i class="fab fa-instagram"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="contact-form">
+              <span class="circle one"></span>
+              <span class="circle two"></span>
+              <form action="index.html">
+                <h2 class="title">Envianos un Mensaje</h2>
+                <div class="input-container">
+                  <input
+                    type="text"
+                    name="name"
+                    class="input"
+                    placeholder="Nombre"
+                  />
+                </div>
+                <div class="input-container">
+                  <input
+                    type="email"
+                    name="email"
+                    class="input"
+                    placeholder="Correo"
+                  />
+                </div>
+                <div class="input-container">
+                  <input
+                    type="tel"
+                    name="phone"
+                    class="input"
+                    placeholder="Celular"
+                  />
+                </div>
+                <div class="input-container textarea">
+                  <textarea
+                    name="message "
+                    class="input"
+                    placeholder="Mensaje "
+                  ></textarea>
+                </div>
+                <a href="about.html"><button class="boton">Enviar</button></a>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="mapa">
+        <div class="container-map">
+          <div id="map" style="height: 400px"></div>
+          <script
+            async
+            defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKheVSYlmj7EGoeuzfYvQXyA0pttjpmMQ&callback=initMap"
+          ></script>
+        </div>
+      </section>
+      <section class="whatsapp">
+        <div class="container">
+          <div class="content text whatsapp-container">
+            <h2>Habla con Nosotros en whatsapp Ahora Mismo</h2>
+            <a href="https://wa.me/6771087943">
+              <i class="fa-brands fa-whatsapp"></i>677-108-7943</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+    <!--Empeiza la seccion del footer-->
+    <footer>
+      <div class="container">
+        <div class="content footer-container">
+          <a href="#"><img src="img/logo.jpeg" alt="" /></a>
+          <div class="content-contactanos">
+            <h3>Contactanos</h3>
+            <p>Canatlan, Canatlan, Durango</p>
+            <ul>
+              <li>
+                <a href="#">6188357943</a>
+              </li>
+              <li>
+                <a href="#">contacto@meidcalservicios.com</a>
+              </li>
+            </ul>
+
+            <div class="sociales">
+              <a href="#"><i class="fa-brands fa-facebook"></i></a>
+              <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+              <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+          </div>
+          <div class="nosotros-container">
+            <h3>Sobre Nosotros</h3>
+            <ul>
+              <li><a href="#">¿Quienes Somos?</a></li>
+              <li><a href="#">Mision y Vision</a></li>
+              <li><a href="#">Terminos y Condiciones</a></li>
+              <li><a href="#">Informacion para clientes</a></li>
+            </ul>
+          </div>
+          <div class="pagos-container">
+            <h3>Metodos de Pago</h3>
+            <ul>
+              <li><a href="#">Transferencias Bancarias</a></li>
+              <li><a href="#">Pago Directo</a></li>
+              <li><a href="#">Compras en Mercado Libre</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!--Termina la seccion del footer-->
+  </body>
+  <script src="js/script.js"></script>
+</html>

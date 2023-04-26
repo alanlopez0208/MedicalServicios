@@ -1,0 +1,308 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
+
+/*Esto lo que hace es poner sin parametros la pagina HTML*/
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+}
+
+:root {
+  --bg-color: black;
+  --text-color: black;
+  --main-color: #02247b;
+  --main-precios: #99ccdc;
+  --card-boton: #8ba9b3;
+  --card-hover: #6882b2;
+  --fondo-primero: #e6e6e6;
+  /* .color1 { #2696b4 };
+.color2 { #99ccdc };
+.color3 { #3094a4 };
+.color4 { #6882b2 };
+.color5 { #b5d6df }; */
+}
+
+body {
+  color: var(--text-color);
+  background-color: #ffffff;
+}
+
+header {
+  /*Para que los elementos de arriba esten esparcidos de manera que 
+    los elementos ocupen toda el espacio se utilizan estos dos elementos*/
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  padding: 15px 30px;
+  transition: all 0.5s ease;
+  background-color: #2099b4;
+
+  
+  /*Para que la navBar se quede estatica hacemos lo siguiente*/
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 50px;
+  border-radius: 10px;
+}
+
+.navBar {
+  display: flex;
+}
+
+.navBar a {
+  color: white;
+  padding: 5px 0;
+  margin: 0px 30px;
+  transition: all 0.5s ease;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.navBar a:hover {
+  color: var(--main-color);
+}
+
+.navBar a.activo {
+  color: var(--main-color);
+}
+
+.navBar li {
+  list-style: none;
+}
+
+.navBar span {
+  color: white;
+  font-size: 0.9rem;
+  transition: all 0.5s ease;
+}
+
+.comboBox {
+  margin-top: 1px;
+  width: 100px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.comboBox:hover .comboBox-lista {
+  opacity: 1;
+  visibility: visible;
+}
+
+.comboBox-seleccion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.comboBox-seleccion i {
+  font-size: 10px;
+  color: white;
+}
+.comboBox-seleccion span {
+  font-weight: 300;
+}
+
+.comboBox-lista {
+  width: 200px;
+  border-radius: 5px;
+  background-color: #2099b4;
+  position: absolute;
+  top: 120%;
+  left: 0%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s linear, visibility 0.2s linear;
+  padding-bottom: 5px;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.5);
+}
+
+.comoBox-lista_item {
+  padding: 5px 0px;
+}
+
+.search-container {
+  width: 240px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-bar {
+  width: 100%;
+  height: auto;
+  background: gray;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 10px;
+  padding: 0px 10px;
+}
+
+.search-bar input {
+  background: transparent;
+  /*El flex:1 sirve para que se ocupe todo el espacio disponible el elemento*/
+  flex: 1;
+  border: 0;
+  outline: none;
+  padding: 5px;
+  font-size: 12px;
+  color: white;
+}
+
+.search-bar input[type="text"]::placeholder {
+  color: white;
+}
+
+.search-bar .icono {
+  display: flex;
+  align-items: center;
+  width: 10px;
+  height: auto;
+  border-radius: 3px;
+}
+
+.search-bar .icono i {
+  font-size: 10px;
+  color: white;
+}
+
+.search-bar .icono i:hover {
+  cursor: pointer;
+}
+
+.usuario {
+  display: flex;
+  align-items: center;
+}
+
+.usuario i {
+  color: white;
+  font-size: 15px;
+  font-weight: 1000;
+  padding: 10px;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+}
+
+.main a {
+  color: white;
+  margin-right: 25px;
+  margin-left: 10px;
+  font-size: 0.8rem;
+  font-weight: 1000;
+  transition: all 0.5 ease;
+}
+
+.fa-cart-shopping:hover {
+  color: #02247b;
+  transition: all 0.5s ease;
+}
+
+#menu-icon {
+  font-size: 36px;
+  color: white;
+  cursor: pointer;
+  z-index: 10001;
+  display: none;
+}
+
+/*De aqui en adelante sigue el  diseño responsivo para
+dispositivos moviles*/
+@media (max-width: 1280px) {
+  header {
+    padding: 14px 2%;
+    transition: 0.5s;
+  }
+  .navBar a {
+    padding: 5px 0;
+    margin: 0px 20px;
+  }
+}
+
+@media (max-width: 1090px) {
+  header {
+    max-width: 100%;
+  }
+
+  .navBar {
+    position: absolute;
+    top: 100%;
+    background-color: #2099b4;
+    width: 300px;
+    height: 250px;
+    flex-direction: column;
+    transition: all 0.5s ease;
+    right: -80%;
+
+    border-radius: 0 0 10px 10px;
+
+    padding-top: 10px;
+
+    box-shadow: 0px 10px 30px -20px rgba(0, 0, 0, 0.8);
+  }
+
+  .navBar li {
+    order: 1;
+  }
+
+  .navBar a {
+    display: block;
+    margin: 15px 0px;
+    padding: 0px 25px;
+    transition: all 0.5s ease;
+  }
+  #menu-icon {
+    display: block;
+  }
+
+  .comboBox {
+    width: 100%;
+  }
+
+  .comboBox-seleccion {
+    margin: 10px 0px;
+    padding: 0px 25px;
+  }
+
+  .comboBox-lista {
+    margin-left: 25px;
+  }
+  .navBar .search-container {
+    width: 250px;
+    margin-left: 25px;
+  }
+
+  .main a {
+    font-size: 0;
+  }
+
+  .navBar.open {
+    right: 0%;
+  }
+}
