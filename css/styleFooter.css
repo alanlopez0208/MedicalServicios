@@ -1,0 +1,67 @@
+/*-------- EMPEIZA LA SECCION DEL FOOTER -------------*/
+footer {
+  background-color: #2099b4;
+  color: white;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.footer-container ul,
+.footer-container li,
+.footer-container a,
+.footer-container p {
+  list-style: none;
+  font-weight: 200;
+  color: white;
+  padding: 5px 0;
+}
+
+.footer-container a:hover {
+  color: var(--card-boton);
+}
+
+.content-contactanos ul li {
+  text-decoration: underline;
+}
+
+.footer-container img {
+  width: 100px;
+  border-radius: 10px;
+}
+
+.sociales {
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sociales i {
+  font-size: 30px;
+}
+.sociales i:hover {
+  color: var(--card-boton);
+}
+
+/*-------- De aqui en adelante sigue el  diseño responsivo para
+dispositivos moviles --------*/
+@media (max-width: 1280px) {
+}
+
+@media (max-width: 1090px) {
+  .child-container {
+    width: 100%;
+    padding: 20px 0;
+  }
+
+  .sociales {
+    width: 50%;
+  }
+
+  .footer-container {
+    justify-content: center;
+  }
+}
