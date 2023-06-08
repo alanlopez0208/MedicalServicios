@@ -1,7 +1,7 @@
 const contenedor = document.getElementById("shop-contenedor");
 const ids = JSON.parse(localStorage.getItem("id"));
 
-if (ids && ids.length > 0) {
+if (ids != null) {
   const tabla = document.createElement("table");
   tabla.classList.add("tabla");
 
@@ -17,52 +17,12 @@ if (ids && ids.length > 0) {
 
   const tbody = document.createElement("tbody");
 
-  function crearFilaProducto() {
-    const filaProducto = document.createElement("tr");
-
-    const columnaProducto = document.createElement("td");
-    columnaProducto.innerHTML = `
-      <div class="producto">
-        <img src="img/productos/cubrebocas.png" alt="" />
-        <a href="#">Cubrebocas Perron de 5 tabletas</a>
-      </div>`;
-
-    const columnaCantidad = document.createElement("td");
-    columnaCantidad.innerHTML = `
-      <div class="cantidad">
-        <button onclick = "incrementar(this)" >+</button>
-        <input type="text" name="" id="cantidad-producto" readonly value = "1"/>
-        <button onclick = "decrementar(this)">-</button>
-      </div>
-    `;
-
-    const columnaPrecioUnitario = document.createElement("td");
-    columnaPrecioUnitario.classList.add("precioUnitario");
-    columnaPrecioUnitario.dataset.titulo = "Precio Unitario";
-    columnaPrecioUnitario.innerText = "5.99";
-
-    const columnaPrecioTotal = document.createElement("td");
-    columnaPrecioTotal.classList.add("PrecioTotal");
-    columnaPrecioTotal.dataset.titulo = "Precio Total";
-    columnaPrecioTotal.innerText = "5.99";
-
-    const columnaBorrar = document.createElement("td");
-
-    columnaBorrar.innerHTML = `<i class="fa-solid fa-trash"></i>`;
-
-    filaProducto.appendChild(columnaProducto);
-
-    filaProducto.appendChild(columnaCantidad);
-    filaProducto.appendChild(columnaPrecioUnitario);
-    filaProducto.appendChild(columnaPrecioTotal);
-    filaProducto.appendChild(columnaBorrar);
-    return filaProducto;
+  for (let clave in ids) {
+    if (ids.hasOwnProperty(clave)) {
+      const filaProducto = crearFilaProducto();
+      tbody.appendChild(filaProducto);
+    }
   }
-
-  ids.forEach(() => {
-    const filaProducto = crearFilaProducto();
-    tbody.appendChild(filaProducto);
-  });
 
   tabla.appendChild(tbody);
   contenedor.appendChild(tabla);
@@ -72,6 +32,48 @@ if (ids && ids.length > 0) {
   nuevoElemento.classList.add("advertencia");
   nuevoElemento.innerHTML = `<p>No has seleccionado ningún artículo</p>`;
   contenedor.appendChild(nuevoElemento);
+}
+
+function crearFilaProducto() {
+  const filaProducto = document.createElement("tr");
+
+  const columnaProducto = document.createElement("td");
+  columnaProducto.innerHTML = `
+    <div class="producto">
+      <img src="img/productos/cubrebocas.png" alt="" />
+      <a href="#">Cubrebocas Perron de 5 tabletas</a>
+    </div>`;
+
+  const columnaCantidad = document.createElement("td");
+  columnaCantidad.innerHTML = `
+    <div class="cantidad">
+      <button onclick = "incrementar(this)" >+</button>
+      <input type="text" name="" id="cantidad-producto" readonly value = "1"/>
+      <button onclick = "decrementar(this)">-</button>
+    </div>
+  `;
+
+  const columnaPrecioUnitario = document.createElement("td");
+  columnaPrecioUnitario.classList.add("precioUnitario");
+  columnaPrecioUnitario.dataset.titulo = "Precio Unitario";
+  columnaPrecioUnitario.innerText = "5.99";
+
+  const columnaPrecioTotal = document.createElement("td");
+  columnaPrecioTotal.classList.add("PrecioTotal");
+  columnaPrecioTotal.dataset.titulo = "Precio Total";
+  columnaPrecioTotal.innerText = "5.99";
+
+  const columnaBorrar = document.createElement("td");
+
+  columnaBorrar.innerHTML = `<i class="fa-solid fa-trash"></i>`;
+
+  filaProducto.appendChild(columnaProducto);
+
+  filaProducto.appendChild(columnaCantidad);
+  filaProducto.appendChild(columnaPrecioUnitario);
+  filaProducto.appendChild(columnaPrecioTotal);
+  filaProducto.appendChild(columnaBorrar);
+  return filaProducto;
 }
 
 function incrementar(button) {

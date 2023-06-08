@@ -28,14 +28,14 @@ var checkboxes = document.getElementsByClassName("filter-categorias");
 for (let index = 0; index < checkboxes.length; index++) {
   const checkbox = checkboxes[index];
   checkbox.addEventListener("click", async function () {
-    if (checkbox.checked) {
-      await eliminarProductos();
-      obtenerProducto(checkbox.value);
-    } else {
-      eliminarCategoria(checkbox.value);
-      if (estaVacio()) {
-        obtenerTodosProductos();
+    const catSelecc = categoriasSeleccionadas();
+    eliminarProductos();
+    if (catSelecc.length != 0) {
+      for (let index = 0; index < catSelecc.length; index++) {
+        obtenerProducto(catSelecc[index]);
       }
+    } else {
+      obtenerTodosProductos();
     }
   });
 }
@@ -65,9 +65,12 @@ function obtenerProducto(categoria) {
             <a href="#">${producto.name}</a>
             <div class="card-precios">
                 <p>${producto.price}</p>
-                <del>$1700</del>
+                <del>$${producto.discount !== 0 ? producto.discount : ""}</del>
             </div>
-            <a href="#" class="card-boton"><button>Agregar</button></a>
+            <a href="#" class="card-boton"
+            ><button onclick="agregarCarrito(1)">
+              Agregar
+            </button></a
         </div>`;
 
         contenedor.appendChild(card);
@@ -90,10 +93,17 @@ function eliminarCategoria(categoria) {
   }
 }
 
-function estaVacio() {
-  const productos = document.getElementsByClassName("card-swiper");
+function categoriasSeleccionadas() {
+  const catgorias = [];
 
-  return productos.length === 0;
+  const checkbox = document.getElementsByClassName("filter-categorias");
+
+  for (let index = 0; index < checkbox.length; index++) {
+    if (checkbox[index].checked) {
+      catgorias.push(checkbox[index].value);
+    }
+  }
+  return catgorias;
 }
 
 function obtenerTodosProductos() {
@@ -111,7 +121,6 @@ function obtenerTodosProductos() {
       data.forEach((producto) => {
         const card = document.createElement("div");
         card.classList.add("card-swiper");
-        card.dataset.productoId = "1";
         card.innerHTML = `
           <div class="swiper-card-img">
               <img src="${producto.imgPath}" alt="" />
@@ -120,9 +129,15 @@ function obtenerTodosProductos() {
               <a href="#">${producto.name}</a>
               <div class="card-precios">
                   <p>${producto.price}</p>
-                  <del>$1700</del>
+                  <del>$${
+                    producto.discount !== 0 ? producto.discount : ""
+                  }</del>
               </div>
-              <a href="#" class="card-boton"><button>Agregar</button></a>
+              <a href="#" class="card-boton"
+              ><button onclick="agregarCarrito(${producto.id})">
+                Agregar
+              </button></a
+            >
           </div>`;
         contenedor.appendChild(card);
       });
@@ -161,9 +176,4 @@ function abrirFiltros(divFiltro) {
     chevronDown.style.display = "inline";
   }
   filtros.classList.toggle("active");
-
-  //   // Obtener el rango inicial menor y mayor
-  //   const initialMinRange = $("#slider-range").slider("values", 0);
-  //   const initialMaxRange = $("#slider-range").slider("values", 1);
-  //   console.log(initialMinRange);
 }
