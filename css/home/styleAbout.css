@@ -19,7 +19,7 @@ main {
 .banner {
   width: 100%;
   height: 400px;
-  background: url("/img/Medical\ Santa\ Cruz.jpg") fixed bottom/ cover;
+  background: url("/img/compania/Medical\ Santa\ Cruz.jpg") fixed bottom/ cover;
   position: relative;
   display: flex;
   align-items: center;

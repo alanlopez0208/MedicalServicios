@@ -124,7 +124,7 @@
                         <input
                           type="checkbox"
                           id="categoria1"
-                          class="checkbox-filter"
+                          class="checkbox-filter filter-categorias"
                           value="movilidad"
                         />
                         <label for="categoria1">Movilidad</label>
@@ -133,8 +133,8 @@
                         <input
                           type="checkbox"
                           id="categoria2"
-                          class="checkbox-filter"
-                          value="movilidad"
+                          class="checkbox-filter filter-categorias"
+                          value="cuidado_personal"
                         />
                         <label for="categoria2">Cuidado Personal</label>
                       </li>
@@ -142,8 +142,8 @@
                         <input
                           type="checkbox"
                           id="categoria3"
-                          class="checkbox-filter"
-                          value="movilidad"
+                          class="checkbox-filter filter-categorias"
+                          value="insumos_mxdicos"
                         />
                         <label for="categoria3">Insumos Medicos</label>
                       </li>
@@ -151,8 +151,8 @@
                         <input
                           type="checkbox"
                           id="categoria4"
-                          class="checkbox-filter"
-                          value="movilidad"
+                          class="checkbox-filter filter-categorias"
+                          value="ortopedia_blanca"
                         />
                         <label for="categoria4">Ortopedia Blanca</label>
                       </li>
@@ -166,7 +166,6 @@
                     <i class="fa-solid fa-chevron-down"></i>
                     <i id="chevron-up" class="fa-solid fa-chevron-up"></i>
                   </div>
-
                   <div class="filtros-checkbox">
                     <p>
                       <input type="text" id="amount" readonly />
@@ -239,8 +238,8 @@
               </div>
             </div>
             <div class="productos-container">
-              <div class="card-container">
-                <div class="card-swiper">
+              <div class="card-container" id="card-container">
+                <!-- <div class="card-swiper">
                   <div class="swiper-card-img">
                     <img src="img/muletas.png" alt="" />
                   </div>
@@ -330,7 +329,7 @@
                     </div>
                     <a href="#" class="card-boton"><button>Agregar</button></a>
                   </div>
-                </div>
+                </div> -->
               </div>
               <div class="pagination">
                 <p>
@@ -358,30 +357,38 @@
     <footer>
       <div class="container">
         <div class="content footer-container">
-          <a href="#"><img src="img/logo.jpeg" alt="" /></a>
+          <a href="#" class="logo"
+            ><img src="img/compania/logo.jpeg" alt=""
+          /></a>
           <div class="content-contactanos child-container">
             <h3>Contactanos</h3>
-            <p>Canatlan, Canatlan, Durango</p>
+            <p id="footer-ubicacion"></p>
             <ul>
               <li>
-                <a href="#">6188357943</a>
+                <a href="#" id="footer-telefono"></a>
               </li>
               <li>
-                <a href="#">contacto@meidcalservicios.com</a>
+                <a href="#" id="footer-correo"></a>
               </li>
             </ul>
 
             <div class="sociales">
-              <a href="#"><i class="fa-brands fa-facebook"></i></a>
-              <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
-              <a href="#"><i class="fa-brands fa-instagram"></i></a>
+              <a id="footer-facebook" target="_blank"
+                ><i class="fa-brands fa-facebook"></i
+              ></a>
+              <a id="footer-whatsapp" target="_blank"
+                ><i class="fa-brands fa-whatsapp"></i
+              ></a>
+              <a id="footer-instagram" target="_blank"
+                ><i class="fa-brands fa-instagram"></i
+              ></a>
             </div>
           </div>
           <div class="nosotros-container child-container">
             <h3>Sobre Nosotros</h3>
             <ul>
-              <li><a href="#">¿Quienes Somos?</a></li>
-              <li><a href="#">Mision y Vision</a></li>
+              <li><a href="about.html#about">¿Quienes Somos?</a></li>
+              <li><a href="about.html#vision">Mision y Vision</a></li>
               <li><a href="#">Terminos y Condiciones</a></li>
               <li><a href="#">Informacion para clientes</a></li>
             </ul>
@@ -400,6 +407,6 @@
     <!--Termina la seccion del footer-->
   </body>
   <script src="js/header.js"></script>
-  <script src="js/scriptAbout.js"></script>
-  <script src="js/scriptProductosVenta.js"></script>
+  <script src="js/footer.js"></script>
+  <script src="js/productosVenta.js"></script>
 </html>

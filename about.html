@@ -85,7 +85,7 @@
       <!--Termina la seccion del Banner-->
 
       <!--Empieza la seccion de Quienes somos-->
-      <section class="about">
+      <section class="about" id="about">
         <div class="container">
           <div class="content">
             <div class="text">
@@ -96,7 +96,7 @@
         </div>
       </section>
       <!--Empieza la seccion de Vision-->
-      <section class="vision">
+      <section class="vision" id="vision">
         <div class="container">
           <div class="vision-contenido content">
             <div class="content-vision">
@@ -155,7 +155,7 @@
               <p>"Cuidando de ti...."</p>
             </div>
             <div class="frase-img">
-              <img src="img/about-img01.jpg" alt="" />
+              <img src="img/compania/about-img01.jpg" alt="" />
             </div>
           </div>
         </div>
@@ -165,30 +165,38 @@
     <footer>
       <div class="container">
         <div class="content footer-container">
-          <a href="#"><img src="img/logo.jpeg" alt="" /></a>
+          <a href="#" class="logo"
+            ><img src="img/compania/logo.jpeg" alt=""
+          /></a>
           <div class="content-contactanos child-container">
             <h3>Contactanos</h3>
-            <p>Canatlan, Canatlan, Durango</p>
+            <p id="footer-ubicacion"></p>
             <ul>
               <li>
-                <a href="#">6188357943</a>
+                <a href="#" id="footer-telefono"></a>
               </li>
               <li>
-                <a href="#">contacto@meidcalservicios.com</a>
+                <a href="#" id="footer-correo"></a>
               </li>
             </ul>
 
             <div class="sociales">
-              <a href="#"><i class="fa-brands fa-facebook"></i></a>
-              <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
-              <a href="#"><i class="fa-brands fa-instagram"></i></a>
+              <a id="footer-facebook" target="_blank"
+                ><i class="fa-brands fa-facebook"></i
+              ></a>
+              <a id="footer-whatsapp" target="_blank"
+                ><i class="fa-brands fa-whatsapp"></i
+              ></a>
+              <a id="footer-instagram" target="_blank"
+                ><i class="fa-brands fa-instagram"></i
+              ></a>
             </div>
           </div>
           <div class="nosotros-container child-container">
             <h3>Sobre Nosotros</h3>
             <ul>
-              <li><a href="#">¿Quienes Somos?</a></li>
-              <li><a href="#">Mision y Vision</a></li>
+              <li><a href="about.html#about">¿Quienes Somos?</a></li>
+              <li><a href="about.html#vision">Mision y Vision</a></li>
               <li><a href="#">Terminos y Condiciones</a></li>
               <li><a href="#">Informacion para clientes</a></li>
             </ul>
@@ -204,8 +212,10 @@
         </div>
       </div>
     </footer>
+
     <!--Termina la seccion del footer-->
   </body>
+  <script src="js/footer.js"></script>
   <script src="js/header.js"></script>
   <script src="js/about.js"></script>
 </html>

@@ -250,7 +250,14 @@
                       <p>$1500</p>
                       <del>$1700</del>
                     </div>
-                    <a href="#" class="card-boton"><button>Agregar</button></a>
+                    <a href="#" class="card-boton"
+                      ><button
+                        onclick="agregarCarrito(this)"
+                        data-producto-id="1"
+                      >
+                        Agregar
+                      </button></a
+                    >
                   </div>
                 </div>
                 <div class="card-swiper">
@@ -358,30 +365,38 @@
     <footer>
       <div class="container">
         <div class="content footer-container">
-          <a href="#"><img src="img/logo.jpeg" alt="" /></a>
+          <a href="#" class="logo"
+            ><img src="img/compania/logo.jpeg" alt=""
+          /></a>
           <div class="content-contactanos child-container">
             <h3>Contactanos</h3>
-            <p>Canatlan, Canatlan, Durango</p>
+            <p id="footer-ubicacion"></p>
             <ul>
               <li>
-                <a href="#">6188357943</a>
+                <a href="#" id="footer-telefono"></a>
               </li>
               <li>
-                <a href="#">contacto@meidcalservicios.com</a>
+                <a href="#" id="footer-correo"></a>
               </li>
             </ul>
 
             <div class="sociales">
-              <a href="#"><i class="fa-brands fa-facebook"></i></a>
-              <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
-              <a href="#"><i class="fa-brands fa-instagram"></i></a>
+              <a id="footer-facebook" target="_blank"
+                ><i class="fa-brands fa-facebook"></i
+              ></a>
+              <a id="footer-whatsapp" target="_blank"
+                ><i class="fa-brands fa-whatsapp"></i
+              ></a>
+              <a id="footer-instagram" target="_blank"
+                ><i class="fa-brands fa-instagram"></i
+              ></a>
             </div>
           </div>
           <div class="nosotros-container child-container">
             <h3>Sobre Nosotros</h3>
             <ul>
-              <li><a href="#">¿Quienes Somos?</a></li>
-              <li><a href="#">Mision y Vision</a></li>
+              <li><a href="about.html#about">¿Quienes Somos?</a></li>
+              <li><a href="about.html#vision">Mision y Vision</a></li>
               <li><a href="#">Terminos y Condiciones</a></li>
               <li><a href="#">Informacion para clientes</a></li>
             </ul>
@@ -400,6 +415,7 @@
     <!--Termina la seccion del footer-->
   </body>
   <script src="js/header.js"></script>
+  <script src="js/footer.js"></script>
   <script src="js/scriptAbout.js"></script>
   <script src="js/productosRenta.js"></script>
 </html>

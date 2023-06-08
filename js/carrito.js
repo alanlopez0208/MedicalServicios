@@ -23,7 +23,7 @@ if (ids && ids.length > 0) {
     const columnaProducto = document.createElement("td");
     columnaProducto.innerHTML = `
       <div class="producto">
-        <img src="img/cubrebocas.png" alt="" />
+        <img src="img/productos/cubrebocas.png" alt="" />
         <a href="#">Cubrebocas Perron de 5 tabletas</a>
       </div>`;
 
