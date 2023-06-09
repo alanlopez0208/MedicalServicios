@@ -7,6 +7,14 @@ async function obtenerCarrito() {
   const contenedor = document.getElementById("shop-contenedor");
   const ids = JSON.parse(localStorage.getItem("id"));
 
+  let cantidadProducto = obtenerCantidadProductos();
+  const cantidadProductoTotal = document.getElementById(
+    "cantidad-productoTotal"
+  );
+
+  cantidadProductoTotal.innerText = cantidadProducto;
+
+  cantidadProductoTotal.innerText = cantidadProducto;
   if (Object.keys(ids) != 0) {
     const tabla = document.createElement("table");
     tabla.classList.add("tabla");
@@ -119,6 +127,11 @@ function incrementar(button, idProducto) {
   ids[idProducto] = cantidad;
   localStorage.setItem("id", JSON.stringify(ids));
   obtenerTotal();
+  let cantidadProducto = obtenerCantidadProductos();
+  const cantidadProductoTotal = document.getElementById(
+    "cantidad-productoTotal"
+  );
+  cantidadProductoTotal.innerText = cantidadProducto;
 }
 
 function decrementar(button, idProducto) {
@@ -143,6 +156,11 @@ function decrementar(button, idProducto) {
     ids[idProducto] = cantidad;
     localStorage.setItem("id", JSON.stringify(ids));
     obtenerTotal();
+    let cantidadProducto = obtenerCantidadProductos();
+    const cantidadProductoTotal = document.getElementById(
+      "cantidad-productoTotal"
+    );
+    cantidadProductoTotal.innerText = cantidadProducto;
   }
 }
 
@@ -188,13 +206,7 @@ async function obtenerTotal() {
     console.log(error);
   }
 
-  let cantidadProducto = 0;
-
-  for (const key in id) {
-    if (Object.hasOwnProperty.call(id, key)) {
-      cantidadProducto += id[key];
-    }
-  }
+  let cantidadProducto = obtenerCantidadProductos();
 
   const elementoCantidad = document.getElementById("total-producto");
   elementoCantidad.innerText =
@@ -218,4 +230,15 @@ async function obtenerTotal() {
     cantidadProducto > 0
       ? "$" + (total + envio).toFixed(2)
       : "$" + (0).toFixed(2);
+}
+
+function obtenerCantidadProductos() {
+  const ids = JSON.parse(localStorage.getItem("id"));
+  let cantidadProductoTotalTexto = 0;
+  for (const key in ids) {
+    if (Object.hasOwnProperty.call(ids, key)) {
+      cantidadProductoTotalTexto += ids[key];
+    }
+  }
+  return cantidadProductoTotalTexto;
 }

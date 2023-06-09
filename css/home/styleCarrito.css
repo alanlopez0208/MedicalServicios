@@ -186,6 +186,7 @@ h2 {
 .resumen-contendedor {
   border-radius: 10px;
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.4);
+
   padding: 10px 20px;
 }
 
@@ -238,7 +239,7 @@ h2 {
 
 .advertencia {
   text-align: center;
-  padding: 50px 0;
+  padding: 50px 10px;
   font-weight: 500;
   font-size: 20px;
 }
