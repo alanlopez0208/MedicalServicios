@@ -6,6 +6,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 async function obtenerCarrito() {
   const contenedor = document.getElementById("shop-contenedor");
   const ids = JSON.parse(localStorage.getItem("id"));
+
   if (Object.keys(ids) != 0) {
     const tabla = document.createElement("table");
     tabla.classList.add("tabla");
@@ -21,29 +22,25 @@ async function obtenerCarrito() {
       </thead>`;
 
     const tbody = document.createElement("tbody");
-
+    const API_URL = "http://localhost:5138";
     for (let clave in ids) {
-      const API_URL = "http://localhost:5138";
+      if (Object.hasOwnProperty.call(ids, clave)) {
+        try {
+          const response = await fetch(`${API_URL}/api/products/${clave}`, {
+            headers: {
+              Accept: "application/json",
+            },
+          });
 
-      for (const clave in ids) {
-        if (Object.hasOwnProperty.call(ids, clave)) {
-          try {
-            const response = await fetch(`${API_URL}/api/products/${clave}`, {
-              headers: {
-                Accept: "application/json",
-              },
-            });
-
-            if (!response.ok) {
-              throw new Error("Error en la solicitud");
-            }
-
-            const data = await response.json();
-            const producto = crearFilaProducto(data, ids[clave]);
-            tbody.appendChild(producto);
-          } catch (error) {
-            console.log(error);
+          if (!response.ok) {
+            throw new Error("Error en la solicitud");
           }
+
+          const data = await response.json();
+          const producto = crearFilaProducto(data, ids[clave]);
+          tbody.appendChild(producto);
+        } catch (error) {
+          console.log(error);
         }
       }
     }
@@ -81,12 +78,12 @@ function crearFilaProducto(data, cantidad) {
   const columnaPrecioUnitario = document.createElement("td");
   columnaPrecioUnitario.classList.add("precioUnitario");
   columnaPrecioUnitario.dataset.titulo = "Precio Unitario";
-  columnaPrecioUnitario.innerText = data.price;
+  columnaPrecioUnitario.innerText = "$" + data.price.toFixed(2);
 
   const columnaPrecioTotal = document.createElement("td");
   columnaPrecioTotal.classList.add("PrecioTotal");
   columnaPrecioTotal.dataset.titulo = "Precio Total";
-  columnaPrecioTotal.innerText = data.price * cantidad;
+  columnaPrecioTotal.innerText = "$" + (data.price * cantidad).toFixed(2);
 
   const columnaBorrar = document.createElement("td");
 
@@ -104,12 +101,11 @@ function crearFilaProducto(data, cantidad) {
 function incrementar(button, idProducto) {
   const fila = button.closest("tr");
   const cantidadInput = fila.querySelector(".cantidad input");
-  const precioUnitario = parseFloat(
-    fila.querySelector(".precioUnitario").textContent
-  );
-  const precioTotal = parseFloat(
-    fila.querySelector(".PrecioTotal").textContent
-  );
+  const precioUnitarioText = fila.querySelector(".precioUnitario").textContent;
+  const precioUnitario = parseFloat(precioUnitarioText.replace("$", ""));
+
+  const precioTotalText = fila.querySelector(".precioUnitario").textContent;
+  const precioTotal = parseFloat(precioUnitarioText.replace("$", ""));
 
   let cantidad = parseInt(cantidadInput.value);
   cantidad++;
@@ -122,17 +118,18 @@ function incrementar(button, idProducto) {
   var ids = JSON.parse(local);
   ids[idProducto] = cantidad;
   localStorage.setItem("id", JSON.stringify(ids));
+  obtenerTotal();
 }
 
 function decrementar(button, idProducto) {
   const fila = button.closest("tr");
   const cantidadInput = fila.querySelector(".cantidad input");
-  const precioUnitario = parseFloat(
-    fila.querySelector(".precioUnitario").textContent
-  );
-  const precioTotal = parseFloat(
-    fila.querySelector(".PrecioTotal").textContent
-  );
+
+  const precioUnitarioText = fila.querySelector(".precioUnitario").textContent;
+  const precioUnitario = parseFloat(precioUnitarioText.replace("$", ""));
+
+  const precioTotalText = fila.querySelector(".precioUnitario").textContent;
+  const precioTotal = parseFloat(precioUnitarioText.replace("$", ""));
 
   let cantidad = parseInt(cantidadInput.value);
   cantidad--;
@@ -145,6 +142,7 @@ function decrementar(button, idProducto) {
     var ids = JSON.parse(local);
     ids[idProducto] = cantidad;
     localStorage.setItem("id", JSON.stringify(ids));
+    obtenerTotal();
   }
 }
 
@@ -162,11 +160,10 @@ function eliminarItem(elemento, productoId) {
 }
 
 async function obtenerTotal() {
+  let total = 0;
+  const localstorage = localStorage.getItem("id");
+  const id = JSON.parse(localstorage);
   try {
-    let total = 0;
-    const localstorage = localStorage.getItem("id");
-    const id = JSON.parse(localstorage);
-
     const API_URL = "http://localhost:5138";
 
     const fetchPromises = [];
@@ -190,4 +187,35 @@ async function obtenerTotal() {
   } catch (error) {
     console.log(error);
   }
+
+  let cantidadProducto = 0;
+
+  for (const key in id) {
+    if (Object.hasOwnProperty.call(id, key)) {
+      cantidadProducto += id[key];
+    }
+  }
+
+  const elementoCantidad = document.getElementById("total-producto");
+  elementoCantidad.innerText =
+    cantidadProducto + " Producto" + (cantidadProducto > 1 ? "s" : "");
+
+  const elementoTotal = document.getElementById("cantidad-total");
+  elementoTotal.innerText = "$" + total.toFixed(2);
+
+  let envio = total >= 500 ? 0 : 200;
+
+  const elementoEnvio = document.getElementById("costo-envioTxt");
+  elementoEnvio.innerText =
+    cantidadProducto > 0
+      ? envio === 0
+        ? "¡Gratis!"
+        : `$${envio.toFixed(2)}`
+      : "";
+
+  const totalPagar = document.getElementById("total-pagar");
+  totalPagar.innerText =
+    cantidadProducto > 0
+      ? "$" + (total + envio).toFixed(2)
+      : "$" + (0).toFixed(2);
 }

@@ -111,7 +111,11 @@
                   <i class="fa-solid fa-cart-shopping"></i>
                   <h2>Carrito de Compra</h2>
                 </div>
-                <p>Tienes <strong>5</strong> producto(s) en tu carrito</p>
+                <p>
+                  Tienes
+                  <strong id="cantidad-productoTotal"></strong> producto(s) en
+                  tu carrito
+                </p>
               </div>
               <div class="carrito-table" id="shop-contenedor">
                 <table class="tabla">
@@ -189,17 +193,21 @@
                 <button class="botonPagar">Ir a Pagar</button>
                 <hr />
                 <div class="linea">
-                  <span class="resumen-txt">5 productos</span>
-                  <span class="cantidad"><strong>$2340</strong></span>
+                  <span class="resumen-txt" id="total-producto"></span>
+                  <span class="cantidad"
+                    ><strong id="cantidad-total"></strong
+                  ></span>
                 </div>
                 <div class="linea">
-                  <span class="resumen-txt">Costo de Envio</span>
-                  <span class="cantidad">$2340</span>
+                  <span class="resumen-txt" id="costo-envio"
+                    >Costo de Envio</span
+                  >
+                  <span class="cantidad" id="costo-envioTxt"></span>
                 </div>
                 <hr />
                 <div class="linea">
                   <span class="resumen-txt total">Total (Iva Incluido)</span>
-                  <p class="cantidad total-pagar">$2340</p>
+                  <p class="cantidad total-pagar" id="total-pagar"></p>
                 </div>
                 <button class="botonPagar">Ir a Pagar</button>
               </div>
