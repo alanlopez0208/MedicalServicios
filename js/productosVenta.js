@@ -67,7 +67,7 @@ function obtenerProducto(categoria) {
                 <p>${producto.price}</p>
                 <del>$${producto.discount !== 0 ? producto.discount : ""}</del>
             </div>
-            <a href="#" class="card-boton"
+            <a class="card-boton"
             ><button onclick="agregarCarrito(1)">
               Agregar
             </button></a
@@ -129,15 +129,15 @@ function obtenerTodosProductos() {
               <a href="#">${producto.name}</a>
               <div class="card-precios">
                   <p>${producto.price}</p>
-                  <del>$${
-                    producto.discount !== 0 ? producto.discount : ""
+                  <del>${
+                    producto.discount !== 0 ? "$" + producto.discount : ""
                   }</del>
               </div>
-              <a href="#" class="card-boton"
-              ><button onclick="agregarCarrito(${producto.id})">
-                Agregar
-              </button></a
-            >
+              <a class="card-boton"
+            ><button onclick="agregarCarrito(${
+              producto.id
+            })">Agregar</button></a
+          >
           </div>`;
         contenedor.appendChild(card);
       });
@@ -159,18 +159,19 @@ async function eliminarProductos() {
 
 //Agregremos funcionalidad a los botones para abrir los filtros
 function abrirFiltros(divFiltro) {
-  var filtros =
-    divFiltro.parentElement.getElementsByClassName("filtros-checkbox")[0];
+  var padre = divFiltro.parentElement.parentElement;
+
+  var filtros = padre.getElementsByClassName("filtros-checkbox")[0];
 
   // Obtiene los elementos de los íconos
-  var chevronDown = divFiltro.querySelector(".fa-chevron-down");
-  var chevronUp = divFiltro.querySelector(".fa-chevron-up");
+  var chevronDown = padre.querySelector(".fa-chevron-down");
+  var chevronUp = padre.querySelector(".fa-chevron-up");
 
   if (chevronDown.style.display !== "none") {
     chevronDown.style.display = "none";
     chevronUp.style.display = "inline";
   }
-  // Si el ícono de fa-chevron-up está visible, ocúltalo y muestra el ícono de fa-chevron-down
+  //Si el ícono de fa-chevron-up está visible, ocúltalo y muestra el ícono de fa-chevron-down
   else {
     chevronUp.style.display = "none";
     chevronDown.style.display = "inline";

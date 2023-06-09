@@ -19,3 +19,12 @@ function initMap() {
   });
 }
 window.initMap = initMap;
+
+local = localStorage.getItem("id");
+
+id = JSON.parse(local);
+const numeroPropiedades = Object.keys(id).length;
+
+const carrito = document.getElementById("icon-carrito");
+
+carrito.innerText = numeroPropiedades;

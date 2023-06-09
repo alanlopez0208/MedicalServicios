@@ -65,9 +65,21 @@ main a {
 }
 
 .filtros-contenedor .filtro-card {
-  cursor: pointer;
   max-width: 100%;
   padding: 10px;
+}
+
+.filtro-boton {
+  width: 100%;
+  padding: 10px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 25px;
+  color: black;
+  font-weight: 300;
+  border: none;
+  background: none;
 }
 
 .filtros-contenedor .filtro-titulo {
@@ -130,12 +142,14 @@ main a {
 }
 
 #slider-range {
+  cursor: default;
   height: 10px;
   background-color: var(--fondo-primero);
   border-radius: 50px;
 }
 
 #slider-mano {
+  cursor: default;
   background-color: var(--card-boton);
   border-radius: 50%;
   width: 30px;

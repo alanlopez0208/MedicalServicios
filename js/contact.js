@@ -1,5 +1,6 @@
 window.addEventListener("DOMContentLoaded", (event) => {
   onRequestHandler();
+  obtenerNosotros();
 });
 
 function onRequestHandler() {
@@ -60,6 +61,26 @@ function onRequestHandler() {
           elementosTwitter[i].href = data.twitterUser;
         }
       });
+    }
+  };
+  xhr.send();
+}
+
+function obtenerNosotros() {
+  const API_URL = "http://localhost:5138";
+
+  const xhr = new XMLHttpRequest();
+
+  xhr.open("GET", `${API_URL}/api/about`);
+
+  xhr.setRequestHeader("accept", " text/plain");
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      const data = JSON.parse(xhr.response);
+
+      const txtNosotros = document.getElementById("nosotros-texto");
+      txtNosotros.innerText = data.description;
     }
   };
   xhr.send();

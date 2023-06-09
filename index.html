@@ -77,6 +77,7 @@
       <div>
         <div class="main">
           <a href="carritoCompras.html" class="usuario">
+            <span id="icon-carrito"></span>
             <i class="fa-solid fa-cart-shopping"></i>Carrito</a
           >
           <div class="bx bx-menu" id="menu-icon"></div>
@@ -94,10 +95,14 @@
             <p class="baner_text" id="banner_text"></p>
             <div class="banner_botones">
               <div class="banner_boton">
-                <a href="#" class="btn"><button>Productos en Venta</button></a>
+                <a href="productosVenta.html" class="btn"
+                  ><button>Productos en Venta</button></a
+                >
               </div>
               <div class="banner_boton">
-                <a href="#" class="btn"><button>Productos en Renta</button></a>
+                <a href="productosRenta.html" class="btn"
+                  ><button>Productos en Renta</button></a
+                >
               </div>
             </div>
           </div>
@@ -293,14 +298,15 @@
       <!--Termina la seccion de Nosotros -->
       <!--Inicia la seccion del Mapa -->
       <section class="mapa">
-        <div class="container-map">
-          <div id="map" style="height: 400px"></div>
-          <script
-            async
-            defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKheVSYlmj7EGoeuzfYvQXyA0pttjpmMQ&callback=initMap"
-          ></script>
-        </div>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29038.84236768387!2d-104.79273480283368!3d24.52508904568739!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x869a3dea79325187%3A0x79417a8a027495b9!2zQ2FuYXRsw6FuLCBEZ28u!5e0!3m2!1ses-419!2smx!4v1686291683752!5m2!1ses-419!2smx"
+          width="100%"
+          height="450"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
       </section>
       <!--Termina la seccion del Mapa-->
     </main>
@@ -400,4 +406,6 @@
   <script src="js/header.js"></script>
   <script src="js/footer.js"></script>
   <script src="js/index.js"></script>
+  <script src="js/localstorage.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>

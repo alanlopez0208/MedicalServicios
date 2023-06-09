@@ -198,6 +198,7 @@ header {
 }
 
 .usuario i {
+  position: relative;
   color: white;
   font-size: 15px;
   font-weight: 1000;
@@ -218,8 +219,7 @@ header {
   transition: all 0.5 ease;
 }
 
-.usuario:hover,
-.usuario i:hover {
+.usuario i:hover > .usuario a:hover {
   color: #02247b;
   transition: all 0.5s ease;
 }
@@ -229,6 +229,15 @@ header {
   transition: all 0.5s ease;
 }
 
+#icon-carrito {
+  z-index: 100;
+  position: absolute;
+  top: 15%;
+  font-size: 0.7rem;
+  background-color: var(--card-boton);
+  padding: 2px 5px;
+  border-radius: 5px;
+}
 #menu-icon {
   font-size: 36px;
   color: white;
@@ -310,4 +319,14 @@ dispositivos moviles*/
   .navBar.open {
     right: 0%;
   }
+}
+
+/*----ESTILOS PARA LA VENTANA EMERGENTE--------*/
+.my-title-class {
+  color: black;
+}
+
+.my-custom-button-class {
+  width: 100%;
+  padding: 5px 50px;
 }

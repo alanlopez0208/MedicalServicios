@@ -72,6 +72,7 @@
       <div>
         <div class="main">
           <a href="carritoCompras.html" class="usuario">
+            <span id="icon-carrito"></span>
             <i class="fa-solid fa-cart-shopping"></i>Carrito</a
           >
           <div class="bx bx-menu" id="menu-icon"></div>
@@ -105,17 +106,12 @@
             <div class="filtros">
               <div class="filtros-contenedor">
                 <div class="filtro-categoria filtro-card">
-                  <div
-                    class="filtro-titulo filtro"
-                    onclick="abrirFiltros(this)"
-                  >
-                    <a href="#">Categoria</a>
-                    <i class="fa-solid fa-chevron-down"></i>
-                    <i
-                      id="chevron-up"
-                      class="fa-solid fa-chevron-up"
-                      style="display: none"
-                    ></i>
+                  <div class="filtro-titulo filtro">
+                    <button class="filtro-boton" onclick="abrirFiltros(this)">
+                      Categoria
+                      <i class="fa-solid fa-chevron-down"></i>
+                      <i id="chevron-up" class="fa-solid fa-chevron-up"></i>
+                    </button>
                   </div>
 
                   <div class="filtros-checkbox">
@@ -161,10 +157,12 @@
                   <div class="separador"></div>
                 </div>
                 <div class="filtro-precio filtro-card">
-                  <div class="filtro-titulo" onclick="abrirFiltros(this)">
-                    <a href="#">Precio</a>
-                    <i class="fa-solid fa-chevron-down"></i>
-                    <i id="chevron-up" class="fa-solid fa-chevron-up"></i>
+                  <div class="filtro-titulo">
+                    <button class="filtro-boton" onclick="abrirFiltros(this)">
+                      Precio
+                      <i class="fa-solid fa-chevron-down"></i>
+                      <i id="chevron-up" class="fa-solid fa-chevron-up"></i>
+                    </button>
                   </div>
                   <div class="filtros-checkbox">
                     <p>
@@ -189,9 +187,11 @@
                 </div>
                 <div class="filtro-marca filtro-card">
                   <div class="filtro-titulo" onclick="abrirFiltros(this)">
-                    <a href="#">Marca</a>
-                    <i class="fa-solid fa-chevron-down"></i>
-                    <i id="chevron-up" class="fa-solid fa-chevron-up"></i>
+                    <button class="filtro-boton" onclick="abrirFiltros(this)">
+                      Marca
+                      <i class="fa-solid fa-chevron-down"></i>
+                      <i id="chevron-up" class="fa-solid fa-chevron-up"></i>
+                    </button>
                   </div>
 
                   <div class="filtros-checkbox">
@@ -410,4 +410,5 @@
   <script src="js/footer.js"></script>
   <script src="js/productosVenta.js"></script>
   <script src="js/localstorage.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>

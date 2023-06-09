@@ -29,10 +29,12 @@ function obtenerProdDest() {
           <h3>${producto.name}</h3>
           <div class="card-precios">
             <p>${producto.price}</p>
-            <del>$1700</del>
+            <del>${producto.discount !== 0 ? "$" + producto.discount : ""}</del>
           </div>
-          <a href="#" class="card-boton"
-            ><button>Agregar</button></a
+          <a class="card-boton"
+            ><button onclick="agregarCarrito(${
+              producto.id
+            })">Agregar</button></a
           >
         </div>
       </div>`;
