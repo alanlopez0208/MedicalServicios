@@ -8,61 +8,62 @@ window.addEventListener("DOMContentLoaded", (event) => {
 async function obtenerCarrito() {
   const contenedor = document.getElementById("shop-contenedor");
   const ids = JSON.parse(localStorage.getItem("id"));
+  if (ids != null) {
+    let cantidadProducto = obtenerCantidadProductos();
+    const cantidadProductoTotal = document.getElementById(
+      "cantidad-productoTotal"
+    );
 
-  let cantidadProducto = obtenerCantidadProductos();
-  const cantidadProductoTotal = document.getElementById(
-    "cantidad-productoTotal"
-  );
+    cantidadProductoTotal.innerText = cantidadProducto;
 
-  cantidadProductoTotal.innerText = cantidadProducto;
+    cantidadProductoTotal.innerText = cantidadProducto;
+    if (Object.keys(ids) != 0) {
+      const tabla = document.createElement("table");
+      tabla.classList.add("tabla");
 
-  cantidadProductoTotal.innerText = cantidadProducto;
-  if (Object.keys(ids) != 0) {
-    const tabla = document.createElement("table");
-    tabla.classList.add("tabla");
+      tabla.innerHTML = `
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio Unitario</th>
+            <th>Precio Total</th>
+          </tr>
+        </thead>`;
 
-    tabla.innerHTML = `
-      <thead>
-        <tr>
-          <th>Producto</th>
-          <th>Cantidad</th>
-          <th>Precio Unitario</th>
-          <th>Precio Total</th>
-        </tr>
-      </thead>`;
+      const tbody = document.createElement("tbody");
+      const API_URL = "http://localhost:5138";
+      for (let clave in ids) {
+        if (Object.hasOwnProperty.call(ids, clave)) {
+          try {
+            const response = await fetch(`${API_URL}/api/products/${clave}`, {
+              headers: {
+                Accept: "application/json",
+              },
+            });
 
-    const tbody = document.createElement("tbody");
-    const API_URL = "http://localhost:5138";
-    for (let clave in ids) {
-      if (Object.hasOwnProperty.call(ids, clave)) {
-        try {
-          const response = await fetch(`${API_URL}/api/products/${clave}`, {
-            headers: {
-              Accept: "application/json",
-            },
-          });
+            if (!response.ok) {
+              throw new Error("Error en la solicitud");
+            }
 
-          if (!response.ok) {
-            throw new Error("Error en la solicitud");
+            const data = await response.json();
+            const producto = crearFilaProducto(data, ids[clave]);
+            tbody.appendChild(producto);
+          } catch (error) {
+            console.log(error);
           }
-
-          const data = await response.json();
-          const producto = crearFilaProducto(data, ids[clave]);
-          tbody.appendChild(producto);
-        } catch (error) {
-          console.log(error);
         }
       }
-    }
 
-    tabla.appendChild(tbody);
-    contenedor.appendChild(tabla);
-  } else {
-    const nuevoElemento = document.createElement("div");
-    nuevoElemento.classList.add("texto");
-    nuevoElemento.classList.add("advertencia");
-    nuevoElemento.innerHTML = `<p>No has seleccionado ningún artículo</p>`;
-    contenedor.appendChild(nuevoElemento);
+      tabla.appendChild(tbody);
+      contenedor.appendChild(tabla);
+    } else {
+      const nuevoElemento = document.createElement("div");
+      nuevoElemento.classList.add("texto");
+      nuevoElemento.classList.add("advertencia");
+      nuevoElemento.innerHTML = `<p>No has seleccionado ningún artículo</p>`;
+      contenedor.appendChild(nuevoElemento);
+    }
   }
 }
 

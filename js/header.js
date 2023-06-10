@@ -21,10 +21,12 @@ function initMap() {
 window.initMap = initMap;
 
 local = localStorage.getItem("id");
-
-id = JSON.parse(local);
-const numeroPropiedades = Object.keys(id).length;
-
 const carrito = document.getElementById("icon-carrito");
+if (local != null) {
+  id = JSON.parse(local);
+  const numeroPropiedades = Object.keys(id).length;
 
-carrito.innerText = numeroPropiedades;
+  carrito.innerText = numeroPropiedades;
+} else {
+  carrito.innerText = 0;
+}
