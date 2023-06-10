@@ -33,8 +33,55 @@
     />
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   </head>
   <body>
+    <span class="overlay"></span>
+    <div class="ventana-contenedor">
+      <div class="ventana-emergente">
+        <div class="contenedor-boton">
+          <i class="fa-solid fa-circle-xmark" onclick="cerrarVentana()"></i>
+        </div>
+        <form action="index.html" class="formulario">
+          <h2 class="title">Comprando el Carrito</h2>
+          <p class="texto">
+            Se le enviara un mensaje en las proximas 72 confirmando su compra
+          </p>
+          <div class="input-container">
+            <input type="text" name="name" class="input" placeholder="Nombre" />
+            <div class="border-bottom"></div>
+          </div>
+
+          <div class="input-container">
+            <input
+              type="email"
+              name="email"
+              class="input"
+              placeholder="Correo"
+            />
+            <div class="border-bottom"></div>
+          </div>
+          <div class="input-container">
+            <input
+              type="tel"
+              name="phone"
+              class="input"
+              placeholder="Celular"
+            />
+            <div class="border-bottom"></div>
+          </div>
+          <div class="contenedor-captacha">
+            <div
+              class="g-recaptcha"
+              data-sitekey="6LedB4gmAAAAAK-Ru32SuK2HPbKghqU5R3ADgCpM"
+            ></div>
+          </div>
+          <button class="botonPagar">Enviar</button>
+        </form>
+      </div>
+    </div>
+
     <!-- Empieza la cabecera -->
     <header>
       <a href="index.html" class="logo">
@@ -209,7 +256,7 @@
                   <span class="resumen-txt total">Total (Iva Incluido)</span>
                   <p class="cantidad total-pagar" id="total-pagar"></p>
                 </div>
-                <button class="botonPagar">Ir a Pagar</button>
+                <button class="botonPagar" onclick="pagar()">Ir a Pagar</button>
               </div>
             </div>
           </div>
@@ -273,4 +320,5 @@
   <script src="js/footer.js"></script>
   <script src="js/scriptAbout.js"></script>
   <script src="js/carrito.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>

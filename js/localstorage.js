@@ -11,12 +11,14 @@ function agregarCarrito(productoId) {
     const producto = { [productoId]: 1 };
     localStorage.setItem("id", JSON.stringify(producto));
   }
+  const main = document.querySelector("main");
+  main.classList.add("activo");
   mostrarVentana();
 }
 
 function mostrarVentana() {
   Swal.fire({
-    title: "Guardo",
+    title: "Agregado",
     text: "Se ha guardado el producto de manera correcta",
     icon: "success",
     iconColor: "#6882b2",
@@ -29,8 +31,10 @@ function mostrarVentana() {
     },
   }).then((result) => {
     if (result.isConfirmed) {
-      // Acción a realizar cuando se hace clic en el botón de confirmación
-      // Por ejemplo, puedes llamar a una función o ejecutar un código específico
+      setTimeout(function () {
+        location.reload();
+      });
+    } else if (result.isDismissed) {
       setTimeout(function () {
         location.reload();
       });

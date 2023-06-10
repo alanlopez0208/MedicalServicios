@@ -1,3 +1,5 @@
+let pagatTotal = 0;
+
 window.addEventListener("DOMContentLoaded", (event) => {
   obtenerCarrito();
   obtenerTotal();
@@ -230,6 +232,8 @@ async function obtenerTotal() {
     cantidadProducto > 0
       ? "$" + (total + envio).toFixed(2)
       : "$" + (0).toFixed(2);
+
+  pagatTotal = (total + envio).toFixed(2);
 }
 
 function obtenerCantidadProductos() {
@@ -241,4 +245,32 @@ function obtenerCantidadProductos() {
     }
   }
   return cantidadProductoTotalTexto;
+}
+
+function pagar() {
+  main = document.querySelector("body");
+  main.classList.add("active");
+}
+
+function cerrarVentana() {
+  Swal.fire({
+    title: "Saliendo",
+    text: "¿Estas Seguro que deseas Salir de la Compra?",
+    icon: "warning",
+    iconColor: "#6882b2",
+    showDenyButton: true,
+    denyButtonText: `Salir`,
+    confirmButtonText: "Quedarse",
+    confirmButtonColor: "#6882b2",
+    customClass: {
+      title: "my-title-class",
+
+      icon: "my-icon-class",
+    },
+  }).then((result) => {
+    if (result.isDenied) {
+      main = document.querySelector("body");
+      main.classList.remove("active");
+    }
+  });
 }

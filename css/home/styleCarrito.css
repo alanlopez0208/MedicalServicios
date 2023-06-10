@@ -19,6 +19,128 @@ main a {
   padding: 30px 40px;
 }
 
+/*----------ESTILOS PARA LA PATALLA EMERGENTE-----------*/
+.overlay {
+  z-index: 101;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  pointer-events: none;
+}
+
+body.active .overlay {
+  opacity: 1;
+}
+
+body.active {
+  overflow: hidden;
+}
+
+.ventana-contenedor {
+  z-index: 102;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.3s ease;
+  transform: scale(1.2);
+}
+
+body.active .ventana-contenedor {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+}
+
+.ventana-emergente {
+  width: 90%;
+
+  background-color: #fff;
+  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.contenedor-boton {
+  padding: 10px 10px;
+  display: flex;
+  justify-content: end;
+}
+
+.contenedor-boton i {
+  font-size: 30px;
+  color: var(--card-boton);
+  transition-duration: 0.5s;
+}
+
+.contenedor-boton i:hover {
+  color: var(--card-hover);
+  transition-duration: 0.5s;
+}
+
+.formulario {
+  padding: 10px 15px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-weight: 600;
+  margin-left: 10px;
+  text-align: center;
+}
+
+.input-container {
+  position: relative;
+  margin: 20px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.input {
+  width: 100%;
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+}
+
+.border-bottom {
+  position: absolute;
+  bottom: 0;
+  width: 95%;
+  height: 1px;
+  background-color: #cccccc;
+}
+
+.contenedor-captacha {
+  width: 50%;
+}
+
+.g-recaptcha {
+  width: 100%;
+  height: auto;
+}
+
+.botonPagar {
+  width: 100%;
+  font-size: 15px;
+  font-weight: 500;
+  color: white;
+  padding: 10px 30px;
+  background: var(--card-hover);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 1.4s;
+  margin: 15px 0px;
+}
+
 /* Estilos para la seccion Banner */
 .banner {
   padding-top: 100px;
@@ -244,7 +366,7 @@ h2 {
   font-size: 20px;
 }
 
-/* Diseño Responsivo */
+/* -----------------Diseño Responsivo ------------------------*/
 @media screen and (max-width: 1024px) {
   .tabla tr {
     display: flex;
@@ -293,6 +415,11 @@ h2 {
 }
 
 @media screen and (max-width: 768px) {
+  .texto {
+    padding-top: 10px;
+    padding-bottom: 0;
+  }
+
   .shop-contenedor {
     flex-direction: column;
   }
@@ -304,5 +431,28 @@ h2 {
 
   .resumen {
     width: 100%;
+  }
+}
+
+@media (max-width: 850px) {
+  .form {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-info:before {
+    bottom: initial;
+    top: -75px;
+    right: 65px;
+    transform: scale(0.95);
+  }
+
+  .contact-form:before {
+    top: -13px;
+    left: initial;
+    right: 70px;
+  }
+
+  .text {
+    margin: 1rem 0 1.5rem 0;
   }
 }
