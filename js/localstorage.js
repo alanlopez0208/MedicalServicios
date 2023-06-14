@@ -31,13 +31,11 @@ function mostrarVentana() {
     },
   }).then((result) => {
     if (result.isConfirmed) {
-      setTimeout(function () {
-        location.reload();
-      });
+      actualizarCarrito();
     } else if (result.isDismissed) {
-      setTimeout(function () {
-        location.reload();
-      });
+      actualizarCarrito();
     }
   });
 }
+
+export { agregarCarrito };

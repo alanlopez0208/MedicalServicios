@@ -1,8 +1,21 @@
+import * as productos from "./productos.js";
+
 let pagatTotal = 0;
 
 window.addEventListener("DOMContentLoaded", (event) => {
   obtenerCarrito();
   obtenerTotal();
+  actualizarCarrito();
+});
+
+const botonPagar = document.getElementById("botonPagar");
+botonPagar.addEventListener("click", function () {
+  pagar();
+});
+
+const ventana = document.getElementById("ventana");
+ventana.addEventListener("click", function () {
+  cerrarVentana();
 });
 
 async function obtenerCarrito() {
@@ -35,23 +48,10 @@ async function obtenerCarrito() {
       const API_URL = "http://localhost:5138";
       for (let clave in ids) {
         if (Object.hasOwnProperty.call(ids, clave)) {
-          try {
-            const response = await fetch(`${API_URL}/api/products/${clave}`, {
-              headers: {
-                Accept: "application/json",
-              },
-            });
-
-            if (!response.ok) {
-              throw new Error("Error en la solicitud");
-            }
-
-            const data = await response.json();
-            const producto = crearFilaProducto(data, ids[clave]);
-            tbody.appendChild(producto);
-          } catch (error) {
-            console.log(error);
-          }
+          const data = await productos.getProduct(`/api/products/${clave}`);
+          console.log(data);
+          const producto = crearFilaProducto(data, ids[clave]);
+          tbody.appendChild(producto);
         }
       }
 
@@ -78,13 +78,35 @@ function crearFilaProducto(data, cantidad) {
     </div>`;
 
   const columnaCantidad = document.createElement("td");
-  columnaCantidad.innerHTML = `
-    <div class="cantidad">
-      <button onclick = "incrementar(this,${data.id})" >+</button>
-      <input type="text" name="" id="cantidad-producto" readonly value = "${cantidad}"/>
-      <button onclick = "decrementar(this,${data.id})">-</button>
-    </div>
-  `;
+
+  const divCantidad = document.createElement("div");
+  divCantidad.classList.add("cantidad");
+
+  const botonIncrementar = document.createElement("button");
+  botonIncrementar.innerText = "+";
+  botonIncrementar.addEventListener("click", function () {
+    incrementar(this, data.id);
+  });
+
+  const inputCantidad = document.createElement("input");
+  inputCantidad.type = "text";
+  inputCantidad.name = "cantidad-producto";
+  inputCantidad.id = "cantidad-producto";
+  inputCantidad.readOnly = true;
+  inputCantidad.value = cantidad;
+
+  const botonDecrementar = document.createElement("button");
+  botonDecrementar.innerText = "-";
+  botonDecrementar.addEventListener("click", function () {
+    decrementar(this, data.id);
+  });
+
+  divCantidad.appendChild(botonIncrementar);
+  divCantidad.appendChild(inputCantidad);
+  divCantidad.appendChild(botonDecrementar);
+
+  columnaCantidad.appendChild(divCantidad);
+  filaProducto.appendChild(columnaCantidad);
 
   const columnaPrecioUnitario = document.createElement("td");
   columnaPrecioUnitario.classList.add("precioUnitario");
@@ -97,8 +119,13 @@ function crearFilaProducto(data, cantidad) {
   columnaPrecioTotal.innerText = "$" + (data.price * cantidad).toFixed(2);
 
   const columnaBorrar = document.createElement("td");
+  const iconoBorrar = document.createElement("i");
+  iconoBorrar.classList.add("fa-solid", "fa-trash");
+  iconoBorrar.addEventListener("click", function () {
+    eliminarItem(this, data.id);
+  });
 
-  columnaBorrar.innerHTML = `<i class="fa-solid fa-trash"  onclick = "eliminarItem(this,${data.id})"></i>`;
+  columnaBorrar.appendChild(iconoBorrar);
 
   filaProducto.appendChild(columnaProducto);
 
@@ -135,6 +162,7 @@ function incrementar(button, idProducto) {
     "cantidad-productoTotal"
   );
   cantidadProductoTotal.innerText = cantidadProducto;
+  actualizarCarrito();
 }
 
 function decrementar(button, idProducto) {
@@ -164,20 +192,21 @@ function decrementar(button, idProducto) {
       "cantidad-productoTotal"
     );
     cantidadProductoTotal.innerText = cantidadProducto;
+    actualizarCarrito();
   }
 }
 
 function eliminarItem(elemento, productoId) {
   const fila = elemento.parentElement;
-  console.log(fila);
+  const item = fila.parentElement;
+
   var local = localStorage.getItem("id");
   var ids = JSON.parse(local);
   delete ids[productoId];
-  console.log(ids);
   localStorage.setItem("id", JSON.stringify(ids));
-  setTimeout(function () {
-    location.reload();
-  });
+  actualizarCarrito();
+  obtenerTotal();
+  item.remove();
 }
 
 async function obtenerTotal() {
@@ -249,8 +278,10 @@ function obtenerCantidadProductos() {
 }
 
 function pagar() {
-  main = document.querySelector("body");
-  main.classList.add("active");
+  if (pagatTotal > 0) {
+    const main = document.querySelector("body");
+    main.classList.add("active");
+  }
 }
 
 function cerrarVentana() {
@@ -270,8 +301,74 @@ function cerrarVentana() {
     },
   }).then((result) => {
     if (result.isDenied) {
-      main = document.querySelector("body");
+      const main = document.querySelector("body");
       main.classList.remove("active");
     }
   });
 }
+
+//Funcion que va a enviar el formulario a la base de datos
+var formulario = document.getElementById("formulario");
+formulario.addEventListener("submit", async function (e) {
+  e.preventDefault();
+  const captchaResponse = grecaptcha.getResponse();
+  if (captchaResponse.length === 0) {
+    alert("Por favor, marque el captcha antes de enviar el formulario.");
+    return;
+  }
+  const progreso = document.getElementById("dots");
+  progreso.style.display = "block";
+  var datos = new FormData(formulario);
+
+  const persona = {
+    customer: {
+      name: "Dorian",
+      firstSurname: "Mondragón",
+      lastSurname: "Serna",
+      email: "d@m.s",
+      mobile: "1234567890",
+      phone: "12345678",
+    },
+    itemIds: [
+      {
+        catalogueId: "580739e4-051d-11ee-86d1-0a002700000a",
+        categoryId: "390f513f-0520-11ee-86d1-0a002700000a",
+        productId: "8f883286-0521-11ee-86d1-0a002700000a",
+        quantity: 1,
+      },
+    ],
+  };
+  try {
+    const respuesta = await productos.enviarReservacion(
+      "/reservations",
+      JSON.stringify(persona)
+    );
+
+    console.log(respuesta);
+  } catch (error) {
+    alert("Ocurrió un error al enviar la reserva." + error);
+  } finally {
+    progreso.style.display = "none";
+    Swal.fire({
+      title: "Agregado",
+      text: "Se ha guardado el producto de manera correcta",
+      icon: "success",
+      iconColor: "#6882b2",
+      confirmButtonText: "Aceptar",
+      confirmButtonColor: "#6882b2",
+      customClass: {
+        title: "my-title-class",
+        confirmButton: "my-custom-button-class",
+        icon: "my-icon-class",
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const main = document.querySelector("body");
+        main.classList.remove("active");
+      } else if (result.isDismissed) {
+        const main = document.querySelector("body");
+        main.classList.remove("active");
+      }
+    });
+  }
+});

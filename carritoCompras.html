@@ -37,19 +37,34 @@
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   </head>
   <body>
+    <div class="progress" id="dots">
+      <div class="dots">
+        <svg>
+          <circle cx="70" cy="70" r="70"></circle>
+        </svg>
+      </div>
+    </div>
+
     <span class="overlay"></span>
     <div class="ventana-contenedor">
       <div class="ventana-emergente">
         <div class="contenedor-boton">
-          <i class="fa-solid fa-circle-xmark" onclick="cerrarVentana()"></i>
+          <i class="fa-solid fa-circle-xmark" id="ventana"></i>
         </div>
-        <form action="index.html" class="formulario">
+        <form class="formulario" id="formulario">
           <h2 class="title">Comprando el Carrito</h2>
           <p class="texto">
-            Se le enviara un mensaje en las proximas 72 confirmando su compra
+            Se le enviara un mensaje en las proximas 72 horas confirmando su
+            compra
           </p>
           <div class="input-container">
-            <input type="text" name="name" class="input" placeholder="Nombre" />
+            <input
+              type="text"
+              name="name"
+              class="input"
+              placeholder="Nombre"
+              required
+            />
             <div class="border-bottom"></div>
           </div>
 
@@ -59,6 +74,7 @@
               name="email"
               class="input"
               placeholder="Correo"
+              required
             />
             <div class="border-bottom"></div>
           </div>
@@ -68,6 +84,7 @@
               name="phone"
               class="input"
               placeholder="Celular"
+              required
             />
             <div class="border-bottom"></div>
           </div>
@@ -77,7 +94,7 @@
               data-sitekey="6LedB4gmAAAAAK-Ru32SuK2HPbKghqU5R3ADgCpM"
             ></div>
           </div>
-          <button class="botonPagar">Enviar</button>
+          <button class="botonPagar" type="submit">Enviar</button>
         </form>
       </div>
     </div>
@@ -256,7 +273,7 @@
                   <span class="resumen-txt total">Total (Iva Incluido)</span>
                   <p class="cantidad total-pagar" id="total-pagar"></p>
                 </div>
-                <button class="botonPagar" onclick="pagar()">Ir a Pagar</button>
+                <button class="botonPagar" id="botonPagar">Ir a Pagar</button>
               </div>
             </div>
           </div>
@@ -318,7 +335,8 @@
   </body>
   <script src="js/header.js"></script>
   <script src="js/footer.js"></script>
-  <script src="js/scriptAbout.js"></script>
-  <script src="js/carrito.js"></script>
+
+  <script src="js/carrito.js" type="module"></script>
+
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>

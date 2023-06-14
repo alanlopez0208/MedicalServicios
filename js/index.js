@@ -1,51 +1,9 @@
+import * as productos from "./productos.js";
+
+obtenerInfo();
+
 const contenedor = document.getElementById("slider");
-window.addEventListener("DOMContentLoaded", (event) => {
-  obtenerProdDest();
-  obtenerInfo();
-});
-
-function obtenerProdDest() {
-  const API_URL = "http://localhost:5138";
-
-  const xhr = new XMLHttpRequest();
-
-  xhr.open("GET", `${API_URL}/api/products`);
-  xhr.setRequestHeader("accept", " text/plain");
-
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      const data = JSON.parse(xhr.response);
-
-      data.forEach((producto) => {
-        const card = document.createElement("div");
-        card.classList.add("swiper-slide");
-
-        card.innerHTML = `
-        <div class="card-swiper">
-        <div class="swiper-card-img">
-          <img src="${producto.imgPath}" alt="" />
-        </div>
-        <div class="swiper-card-txt">
-          <h3>${producto.name}</h3>
-          <div class="card-precios">
-            <p>${producto.price}</p>
-            <del>${producto.discount !== 0 ? "$" + producto.discount : ""}</del>
-          </div>
-          <a class="card-boton"
-            ><button onclick="agregarCarrito(${
-              producto.id
-            })">Agregar</button></a
-          >
-        </div>
-      </div>`;
-
-        contenedor.appendChild(card);
-      });
-    }
-  };
-
-  xhr.send();
-}
+productos.getAllProducts("/api/products", contenedor);
 
 function obtenerInfo() {
   const API_URL = "http://localhost:5138";
