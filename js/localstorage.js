@@ -1,14 +1,27 @@
-function agregarCarrito(productoId) {
+function agregarCarrito(productoId, categoriaId, catagologoId) {
   const idsLocal = localStorage.getItem("id");
 
   if (idsLocal != null) {
     const ids = JSON.parse(idsLocal);
+
     if (!ids.hasOwnProperty(productoId)) {
-      ids[productoId] = 1;
+      const producto = {
+        categoriaId: categoriaId,
+        catalogoId: catagologoId,
+        cantidad: 1,
+      };
+      ids[productoId] = producto;
       localStorage.setItem("id", JSON.stringify(ids));
     }
   } else {
-    const producto = { [productoId]: 1 };
+    const producto = {
+      [productoId]: {
+        categoriaId: categoriaId,
+        catalogoId: catagologoId,
+        cantidad: 1,
+      },
+    };
+    console.log(producto);
     localStorage.setItem("id", JSON.stringify(producto));
   }
   const main = document.querySelector("main");
@@ -37,5 +50,3 @@ function mostrarVentana() {
     }
   });
 }
-
-export { agregarCarrito };

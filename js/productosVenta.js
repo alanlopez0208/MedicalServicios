@@ -1,7 +1,4 @@
-const contenedor = document.getElementById("slider");
-window.addEventListener("DOMContentLoaded", (event) => {
-  obtenerTodosProductos();
-});
+obtenerTodosProductos();
 
 //Agregamos el script del JQuery UI
 $(function () {
@@ -107,44 +104,17 @@ function categoriasSeleccionadas() {
 }
 
 function obtenerTodosProductos() {
-  const API_URL = "http://localhost:5138";
+  const contenedor = document.getElementById("card-container");
+  const filtrosCategoria =
+    document.getElementsByClassName("checkbox-categoria");
 
-  const xhr = new XMLHttpRequest();
+  for (let index = 0; index < filtrosCategoria.length; index++) {
+    const filtroCategoria = filtrosCategoria[index];
 
-  xhr.open("GET", `${API_URL}/api/products`);
-  xhr.setRequestHeader("accept", "text/plain");
+    const id = filtroCategoria.value;
 
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      const data = JSON.parse(xhr.response);
-      const contenedor = document.getElementById("card-container");
-      data.forEach((producto) => {
-        const card = document.createElement("div");
-        card.classList.add("card-swiper");
-        card.innerHTML = `
-          <div class="swiper-card-img">
-              <img src="${producto.imgPath}" alt="" />
-          </div>
-          <div class="swiper-card-txt">
-              <a href="#">${producto.name}</a>
-              <div class="card-precios">
-                  <p>${producto.price}</p>
-                  <del>${
-                    producto.discount !== 0 ? "$" + producto.discount : ""
-                  }</del>
-              </div>
-              <a class="card-boton"
-            ><button onclick="agregarCarrito(${
-              producto.id
-            })">Agregar</button></a
-          >
-          </div>`;
-        contenedor.appendChild(card);
-      });
-    }
-  };
-
-  xhr.send();
+    getAllProducts("/products/cat", id, contenedor);
+  }
 }
 
 async function eliminarProductos() {

@@ -24,12 +24,14 @@ let tabInputs = document.querySelectorAll(".tabInput");
 function actualizarCarrito() {
   const local = localStorage.getItem("id");
   const carrito = document.getElementById("icon-carrito");
+
   if (local != null) {
     const ids = JSON.parse(localStorage.getItem("id"));
     let cantidadProductoTotalTexto = 0;
     for (const key in ids) {
       if (Object.hasOwnProperty.call(ids, key)) {
-        cantidadProductoTotalTexto += ids[key];
+        const producto = ids[key];
+        cantidadProductoTotalTexto += producto["cantidad"];
       }
     }
 

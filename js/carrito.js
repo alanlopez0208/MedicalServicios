@@ -1,5 +1,3 @@
-import * as productos from "./productos.js";
-
 let pagatTotal = 0;
 
 window.addEventListener("DOMContentLoaded", (event) => {
@@ -20,6 +18,7 @@ ventana.addEventListener("click", function () {
 
 async function obtenerCarrito() {
   const contenedor = document.getElementById("shop-contenedor");
+  console.log(contenedor);
   const ids = JSON.parse(localStorage.getItem("id"));
   if (ids != null) {
     let cantidadProducto = obtenerCantidadProductos();
@@ -29,7 +28,6 @@ async function obtenerCarrito() {
 
     cantidadProductoTotal.innerText = cantidadProducto;
 
-    cantidadProductoTotal.innerText = cantidadProducto;
     if (Object.keys(ids) != 0) {
       const tabla = document.createElement("table");
       tabla.classList.add("tabla");
@@ -45,17 +43,18 @@ async function obtenerCarrito() {
         </thead>`;
 
       const tbody = document.createElement("tbody");
-      const API_URL = "http://localhost:5138";
+
       for (let clave in ids) {
         if (Object.hasOwnProperty.call(ids, clave)) {
-          const data = await productos.getProduct(`/api/products/${clave}`);
-          console.log(data);
-          const producto = crearFilaProducto(data, ids[clave]);
+          const elemento = ids[clave];
+          const data = await getProduct(`/products`, clave, elemento);
+          const producto = crearFilaProducto(data, elemento["cantidad"], clave);
+
           tbody.appendChild(producto);
+          tabla.appendChild(tbody);
         }
       }
 
-      tabla.appendChild(tbody);
       contenedor.appendChild(tabla);
     } else {
       const nuevoElemento = document.createElement("div");
@@ -67,7 +66,7 @@ async function obtenerCarrito() {
   }
 }
 
-function crearFilaProducto(data, cantidad) {
+function crearFilaProducto(data, cantidad, clave) {
   const filaProducto = document.createElement("tr");
 
   const columnaProducto = document.createElement("td");
@@ -85,7 +84,7 @@ function crearFilaProducto(data, cantidad) {
   const botonIncrementar = document.createElement("button");
   botonIncrementar.innerText = "+";
   botonIncrementar.addEventListener("click", function () {
-    incrementar(this, data.id);
+    incrementar(this, data.id, clave);
   });
 
   const inputCantidad = document.createElement("input");
@@ -98,7 +97,7 @@ function crearFilaProducto(data, cantidad) {
   const botonDecrementar = document.createElement("button");
   botonDecrementar.innerText = "-";
   botonDecrementar.addEventListener("click", function () {
-    decrementar(this, data.id);
+    decrementar(this, data.id, clave);
   });
 
   divCantidad.appendChild(botonIncrementar);
@@ -136,7 +135,7 @@ function crearFilaProducto(data, cantidad) {
   return filaProducto;
 }
 
-function incrementar(button, idProducto) {
+function incrementar(button, idProducto, clave) {
   const fila = button.closest("tr");
   const cantidadInput = fila.querySelector(".cantidad input");
   const precioUnitarioText = fila.querySelector(".precioUnitario").textContent;
@@ -152,10 +151,16 @@ function incrementar(button, idProducto) {
   const nuevoPrecioTotal = precioUnitario * cantidad;
   fila.querySelector(".PrecioTotal").textContent = nuevoPrecioTotal.toFixed(2);
   var local = localStorage.getItem("id");
-
   var ids = JSON.parse(local);
-  ids[idProducto] = cantidad;
-  localStorage.setItem("id", JSON.stringify(ids));
+
+  if (ids.hasOwnProperty(clave)) {
+    const p = ids[clave];
+
+    p["cantidad"] = cantidad;
+    // Vuelve a almacenar el objeto actualizado en el localStorage
+    localStorage.setItem("id", JSON.stringify(ids));
+  }
+
   obtenerTotal();
   let cantidadProducto = obtenerCantidadProductos();
   const cantidadProductoTotal = document.getElementById(
@@ -165,7 +170,7 @@ function incrementar(button, idProducto) {
   actualizarCarrito();
 }
 
-function decrementar(button, idProducto) {
+function decrementar(button, idProducto, clave) {
   const fila = button.closest("tr");
   const cantidadInput = fila.querySelector(".cantidad input");
 
@@ -182,10 +187,17 @@ function decrementar(button, idProducto) {
     const nuevoPrecioTotal = precioUnitario * cantidad;
     fila.querySelector(".PrecioTotal").textContent =
       nuevoPrecioTotal.toFixed(2);
+
     var local = localStorage.getItem("id");
     var ids = JSON.parse(local);
-    ids[idProducto] = cantidad;
-    localStorage.setItem("id", JSON.stringify(ids));
+
+    if (ids.hasOwnProperty(clave)) {
+      const p = ids[clave];
+
+      p["cantidad"] = cantidad;
+      // Vuelve a almacenar el objeto actualizado en el localStorage
+      localStorage.setItem("id", JSON.stringify(ids));
+    }
     obtenerTotal();
     let cantidadProducto = obtenerCantidadProductos();
     const cantidadProductoTotal = document.getElementById(
@@ -213,29 +225,21 @@ async function obtenerTotal() {
   let total = 0;
   const localstorage = localStorage.getItem("id");
   const id = JSON.parse(localstorage);
+  const progreso = document.getElementById("dots");
   try {
-    const API_URL = "http://localhost:5138";
-
-    const fetchPromises = [];
-
+    progreso.style.display = "block";
     for (const clave in id) {
       if (Object.hasOwnProperty.call(id, clave)) {
-        const response = await fetch(`${API_URL}/api/products/${clave}`, {
-          headers: {
-            Accept: "application/json",
-          },
-        });
+        const elemento = id[clave];
+        const producto = await getProduct("/products", clave, elemento);
 
-        if (!response.ok) {
-          throw new Error("Error en la solicitud");
-        }
-
-        const data = await response.json();
-        total += data.price * id[clave];
+        total = elemento["cantidad"] * producto.price;
       }
     }
   } catch (error) {
     console.log(error);
+  } finally {
+    progreso.style.display = "none";
   }
 
   let cantidadProducto = obtenerCantidadProductos();
@@ -271,9 +275,12 @@ function obtenerCantidadProductos() {
   let cantidadProductoTotalTexto = 0;
   for (const key in ids) {
     if (Object.hasOwnProperty.call(ids, key)) {
-      cantidadProductoTotalTexto += ids[key];
+      const p = ids[key];
+
+      cantidadProductoTotalTexto += p["cantidad"];
     }
   }
+
   return cantidadProductoTotalTexto;
 }
 

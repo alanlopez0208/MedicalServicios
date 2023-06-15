@@ -1,9 +1,13 @@
-import * as productos from "./productos.js";
-
 obtenerInfo();
+getProductDestacados();
 
-const contenedor = document.getElementById("slider");
-productos.getAllProducts("/api/products", contenedor);
+function getProductDestacados() {
+  const contenedor = document.getElementById("slider");
+  const catid = "390f513f-0524-11ee-86d1-0a002700000a";
+
+  getAllProducts("/products/cat", catid, contenedor);
+  console.log(contenedor);
+}
 
 function obtenerInfo() {
   const API_URL = "http://localhost:5138";
