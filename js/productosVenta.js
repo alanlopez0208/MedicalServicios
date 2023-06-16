@@ -1,4 +1,49 @@
-obtenerTodosProductos();
+window.addEventListener("DOMContentLoaded", async (event) => {
+  const progreso = document.getElementById("dots");
+  try {
+    progreso.style.display = "block";
+    await obtenerCategory();
+    await obtenerTodosProductos();
+    eventoFiltrar();
+  } catch (error) {
+    console.log(error);
+  } finally {
+    progreso.style.display = "none";
+  }
+});
+
+async function obtenerCategory() {
+  const contenedorCategorias = document.getElementById("filtros-Categorias");
+
+  const datos = await obtenerCategorias("/categories");
+
+  const ul = document.createElement("ul");
+  let i = 0;
+  for (const key in datos) {
+    if (Object.hasOwnProperty.call(datos, key)) {
+      const elemento = datos[key];
+      const li = document.createElement("li");
+      const id = "categoria" + (i + 1);
+      const input = document.createElement("input");
+      input.type = "checkbox";
+      input.id = id;
+      input.classList.add("checkbox-filter");
+      input.classList.add("checkbox-categoria");
+      input.value = elemento["id"];
+
+      const label = document.createElement("label");
+      label.for = id;
+      label.innerText = " " + elemento["label"];
+      li.appendChild(input);
+      li.appendChild(label);
+      ul.appendChild(li);
+
+      i++;
+    }
+  }
+
+  contenedorCategorias.appendChild(ul);
+}
 
 //Agregamos el script del JQuery UI
 $(function () {
@@ -19,64 +64,6 @@ $(function () {
       $("#slider-range").slider("values", 1)
   );
 });
-
-// Agregamos Acciones a las Categorias
-var checkboxes = document.getElementsByClassName("filter-categorias");
-for (let index = 0; index < checkboxes.length; index++) {
-  const checkbox = checkboxes[index];
-  checkbox.addEventListener("click", async function () {
-    const catSelecc = categoriasSeleccionadas();
-    eliminarProductos();
-    if (catSelecc.length != 0) {
-      for (let index = 0; index < catSelecc.length; index++) {
-        obtenerProducto(catSelecc[index]);
-      }
-    } else {
-      obtenerTodosProductos();
-    }
-  });
-}
-
-function obtenerProducto(categoria) {
-  const API_URL = "http://localhost:5138";
-
-  const xhr = new XMLHttpRequest();
-
-  xhr.open("GET", `${API_URL}/api/catalogue/category/${categoria}`);
-  xhr.setRequestHeader("accept", "text/plain");
-
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      const data = JSON.parse(xhr.response);
-      const contenedor = document.getElementById("card-container");
-      data.forEach((producto) => {
-        const card = document.createElement("div");
-        card.classList.add("card-swiper");
-        card.dataset.productoId = "1";
-        card.dataset.categoria = categoria;
-        card.innerHTML = `
-        <div class="swiper-card-img">
-            <img src="${producto.imgPath}" alt="" />
-        </div>
-        <div class="swiper-card-txt">
-            <a href="#">${producto.name}</a>
-            <div class="card-precios">
-                <p>${producto.price}</p>
-                <del>$${producto.discount !== 0 ? producto.discount : ""}</del>
-            </div>
-            <a class="card-boton"
-            ><button onclick="agregarCarrito(1)">
-              Agregar
-            </button></a
-        </div>`;
-
-        contenedor.appendChild(card);
-      });
-    }
-  };
-
-  xhr.send();
-}
 
 function eliminarCategoria(categoria) {
   const productos = document.querySelectorAll(
@@ -118,11 +105,11 @@ function obtenerTodosProductos() {
 }
 
 async function eliminarProductos() {
-  const productos = document.querySelectorAll(".card-swiper");
+  const productos = document.querySelectorAll(".swiper-slide");
 
   for (let index = 0; index < productos.length; index++) {
     const element = productos[index];
-    console.log(element);
+
     element.remove();
   }
 }
@@ -147,4 +134,102 @@ function abrirFiltros(divFiltro) {
     chevronDown.style.display = "inline";
   }
   filtros.classList.toggle("active");
+}
+
+//Metodo que se va a usar para las filtraciones
+function eventoFiltrar() {
+  const checkboxes = document.getElementsByClassName("checkbox-filter");
+
+  for (let index = 0; index < checkboxes.length; index++) {
+    const checkbox = checkboxes[index];
+
+    const progreso = document.getElementById("dots");
+    checkbox.addEventListener("click", async function (event) {
+      const contenedor = document.getElementById("card-container");
+      let elementos = [];
+      await eliminarProductos();
+      try {
+        progreso.style.display = "block";
+        const clases = checkbox.className.split(" ");
+        const claseDeseada = clases[1];
+
+        switch (claseDeseada) {
+          case "checkbox-categoria":
+            const checkboxesPalomeados = document.querySelectorAll(
+              "input.checkbox-categoria:checked"
+            );
+            let elemento = await obtenerProductosCategorias(
+              checkboxesPalomeados
+            );
+            elementos = elementos.concat(elemento);
+            break;
+        }
+
+        agregarProducto(elementos, contenedor);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        progreso.style.display = "none";
+      }
+    });
+  }
+}
+
+async function obtenerProductosCategorias(checkboxesPalomeados) {
+  let elementos = [];
+  for (let index = 0; index < checkboxesPalomeados.length; index++) {
+    const element = await obtenerIdProductos(
+      "/products/cat",
+      checkboxesPalomeados[index].value
+    );
+    elementos = elementos.concat(element);
+  }
+
+  return elementos;
+}
+
+function agregarProducto(data, contenedor) {
+  for (const key in data) {
+    if (Object.hasOwnProperty.call(data, key)) {
+      const producto = data[key];
+
+      const card = document.createElement("div");
+      card.classList.add("swiper-slide");
+
+      card.innerHTML = `
+        <div class="card-swiper">
+          <div class="swiper-card-img">
+            <img src="${producto.imgPath}" alt="" />
+          </div>
+          <div class="swiper-card-txt">
+            <h3>${producto.name}</h3>
+            <div class="card-precios">
+              <p>${producto.price}</p>
+              <del>${
+                producto.discountPct !== 0 ? "$" + producto.discountPct : ""
+              }</del>
+            </div>
+            <a class="card-boton">
+              <button id-Producto="${producto.id}" id-Catalogo= ${
+        producto.catalogueId
+      }
+      id-Categoria = ${producto.categoria} class="btn-agregar" >Agregar</button>
+            </a>
+          </div>
+        </div>`;
+      contenedor.appendChild(card);
+
+      // Agregar acción al botón "Agregar"
+      const botonAgregar = card.querySelector(".btn-agregar");
+      botonAgregar.addEventListener("click", function () {
+        const idProducto = botonAgregar.getAttribute("id-Producto");
+        const idCatalogo = botonAgregar.getAttribute("id-Catalogo");
+        const idCategoria = botonAgregar.getAttribute("id-Categoria");
+
+        agregarCarrito(idProducto, idCategoria, idCatalogo);
+      });
+
+      contenedor.appendChild(card);
+    }
+  }
 }

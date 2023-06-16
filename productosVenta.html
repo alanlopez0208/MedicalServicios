@@ -35,6 +35,13 @@
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
   </head>
   <body>
+    <div class="progress" id="dots">
+      <div class="dots">
+        <svg>
+          <circle cx="70" cy="70" r="70"></circle>
+        </svg>
+      </div>
+    </div>
     <!-- Empieza la cabecera -->
     <header>
       <a href="index.html" class="logo">
@@ -107,15 +114,15 @@
               <div class="filtros-contenedor">
                 <div class="filtro-categoria filtro-card">
                   <div class="filtro-titulo filtro">
-                    <button class="filtro-boton">
+                    <button class="filtro-boton" onclick="abrirFiltros(this)">
                       Categoria
                       <i class="fa-solid fa-chevron-down"></i>
                       <i id="chevron-up" class="fa-solid fa-chevron-up"></i>
                     </button>
                   </div>
 
-                  <div class="filtros-checkbox">
-                    <ul>
+                  <div class="filtros-checkbox" id="filtros-Categorias">
+                    <!-- <ul>
                       <li>
                         <input
                           type="checkbox"
@@ -152,13 +159,13 @@
                         />
                         <label for="categoria4">Ortopedia Blanca</label>
                       </li>
-                    </ul>
+                    </ul> -->
                   </div>
                   <div class="separador"></div>
                 </div>
                 <div class="filtro-precio filtro-card">
                   <div class="filtro-titulo">
-                    <button class="filtro-boton">
+                    <button class="filtro-boton" onclick="abrirFiltros(this)">
                       Precio
                       <i class="fa-solid fa-chevron-down"></i>
                       <i id="chevron-up" class="fa-solid fa-chevron-up"></i>
@@ -187,8 +194,8 @@
                 </div>
                 <div class="filtro-marca filtro-card">
                   <div class="filtro-titulo">
-                    <button class="filtro-boton">
-                      Movilidad
+                    <button class="filtro-boton" onclick="abrirFiltros(this)">
+                      Marca
                       <i class="fa-solid fa-chevron-down"></i>
                       <i id="chevron-up" class="fa-solid fa-chevron-up"></i>
                     </button>
@@ -200,7 +207,7 @@
                         <input
                           type="checkbox"
                           id="categoria5"
-                          class="checkbox-filter"
+                          class="checkbox-filter checkbox-marca"
                           value="movilidad"
                         />
                         <label for="categoria5">Mueller</label>
@@ -209,7 +216,7 @@
                         <input
                           type="checkbox"
                           id="categoria6"
-                          class="checkbox-filter"
+                          class="checkbox-filter checkbox-marca"
                           value="movilidad"
                         />
                         <label for="categoria6">Bauerfeind</label>
@@ -218,7 +225,7 @@
                         <input
                           type="checkbox"
                           id="categoria7"
-                          class="checkbox-filter filtro-categoria"
+                          class="checkbox-filter checkbox-marca"
                           value="movilidad"
                         />
                         <label for="categoria7">Rehband</label>
@@ -227,7 +234,7 @@
                         <input
                           type="checkbox"
                           id="categoria8"
-                          class="checkbox-filter"
+                          class="checkbox-filter checkbox-marca"
                           value="movilidad"
                         />
                         <label for="categoria8">ProTec</label>

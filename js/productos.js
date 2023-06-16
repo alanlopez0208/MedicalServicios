@@ -23,7 +23,7 @@ async function getAllProducts(API, categoria, contenedor) {
         const producto = data[key];
         const card = document.createElement("div");
         card.classList.add("swiper-slide");
-        console.log(producto.imgPath);
+
         card.innerHTML = `
           <div class="card-swiper">
             <div class="swiper-card-img">
@@ -117,6 +117,60 @@ async function enviarReservacion(API, reservacion) {
       body: reservacion,
     });
     const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+async function obtenerCategorias(API) {
+  const url = APIURL + API;
+
+  const cuerpo = {
+    catalogueId: "580739e4-051d-11ee-86d1-0a002700000a",
+  };
+
+  try {
+    const response = await fetch("http://api.medicalsantacruz.com" + API, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(cuerpo),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+async function obtenerIdProductos(API, categoriaId) {
+  const url = APIURL + API;
+
+  const cuerpo = {
+    catalogueId: "580739e4-051d-11ee-86d1-0a002700000a",
+    categoryId: categoriaId,
+  };
+
+  try {
+    const response = await fetch("http://api.medicalsantacruz.com" + API, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(cuerpo),
+    });
+    const data = await response.json();
+    for (const key in data) {
+      if (Object.hasOwnProperty.call(data, key)) {
+        const element = data[key];
+        element.categoria = categoriaId;
+        element.catalogo = cuerpo.catalogueId;
+      }
+    }
     return data;
   } catch (error) {
     console.log(error);
