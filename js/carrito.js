@@ -18,19 +18,19 @@ ventana.addEventListener("click", function () {
 
 async function obtenerCarrito() {
   const contenedor = document.getElementById("shop-contenedor");
-  console.log(contenedor);
+  const cantidadProductoTotal = document.getElementById(
+    "cantidad-productoTotal"
+  );
   const ids = JSON.parse(localStorage.getItem("id"));
-  if (ids != null) {
+  if (ids != null && ids.length != 0) {
     let cantidadProducto = obtenerCantidadProductos();
-    const cantidadProductoTotal = document.getElementById(
-      "cantidad-productoTotal"
-    );
 
     cantidadProductoTotal.innerText = cantidadProducto;
 
     if (Object.keys(ids) != 0) {
       const tabla = document.createElement("table");
       tabla.classList.add("tabla");
+      tabla.setAttribute("id", "tabla");
 
       tabla.innerHTML = `
         <thead>
@@ -63,6 +63,9 @@ async function obtenerCarrito() {
       nuevoElemento.innerHTML = `<p>No has seleccionado ningún artículo</p>`;
       contenedor.appendChild(nuevoElemento);
     }
+  } else {
+    cantidadProductoTotal.innerText = 0;
+    contenedor.innerHTML = `<p class="textoAdvertencia"> No has seleccionado Ningun Articulo </p>`;
   }
 }
 
@@ -219,6 +222,19 @@ function eliminarItem(elemento, productoId) {
   actualizarCarrito();
   obtenerTotal();
   item.remove();
+  location.reload();
+  setTimeout(function () {
+    location.reload();
+  }, 1000);
+}
+
+function eliminarItems() {
+  const td = document.getElementById("tabla");
+  td.remove();
+  localStorage.removeItem("id");
+  actualizarCarrito();
+  obtenerTotal();
+  obtenerCarrito();
 }
 
 async function obtenerTotal() {
@@ -285,7 +301,9 @@ function obtenerCantidadProductos() {
 }
 
 function pagar() {
-  if (pagatTotal > 0) {
+  const cantidad = document.getElementById("cantidad-total").textContent;
+  const precioTotal = parseFloat(cantidad.replace("$", ""));
+  if (pagatTotal > 0 && precioTotal > 0) {
     const main = document.querySelector("body");
     main.classList.add("active");
   }
@@ -317,6 +335,8 @@ function cerrarVentana() {
 //Funcion que va a enviar el formulario a la base de datos
 var formulario = document.getElementById("formulario");
 formulario.addEventListener("submit", async function (e) {
+  const idsLocal = localStorage.getItem("id");
+  const ids = JSON.parse(idsLocal);
   e.preventDefault();
   const captchaResponse = grecaptcha.getResponse();
   if (captchaResponse.length === 0) {
@@ -327,38 +347,53 @@ formulario.addEventListener("submit", async function (e) {
   progreso.style.display = "block";
   var datos = new FormData(formulario);
 
+  let apellidos = datos.get("lastName");
+  let apellidosArray = apellidos.split(" ");
+
   const persona = {
     customer: {
-      name: "Dorian",
-      firstSurname: "Mondragón",
-      lastSurname: "Serna",
-      email: "d@m.s",
-      mobile: "1234567890",
-      phone: "12345678",
+      name: datos.get("name"),
+      firstSurname: apellidosArray[0],
+      lastSurname: apellidosArray[1],
+      email: datos.get("email"),
+      mobile: datos.get("phone"),
+      phone: datos.get("smartphone"),
     },
-    itemIds: [
-      {
-        catalogueId: "580739e4-051d-11ee-86d1-0a002700000a",
-        categoryId: "390f513f-0520-11ee-86d1-0a002700000a",
-        productId: "8f883286-0521-11ee-86d1-0a002700000a",
-        quantity: 1,
-      },
-    ],
+    itemIds: [],
   };
+
+  for (const key in ids) {
+    if (Object.hasOwnProperty.call(ids, key)) {
+      const element = ids[key];
+      const nuevoItem = {
+        catalogueId: element["catalogoId"],
+        categoryId: element["categoriaId"],
+        productId: key,
+        quantity: element["cantidad"],
+      };
+
+      persona.itemIds.push(nuevoItem);
+    }
+  }
+
   try {
-    const respuesta = await productos.enviarReservacion(
+    const respuesta = await enviarReservacion(
       "/reservations",
       JSON.stringify(persona)
     );
 
     console.log(respuesta);
   } catch (error) {
-    alert("Ocurrió un error al enviar la reserva." + error);
+    alert(
+      "Ocurrió un error al enviar la reserva. Porfavor intente de Nuevo plis 8(" +
+        error
+    );
+    console.log(error);
   } finally {
     progreso.style.display = "none";
     Swal.fire({
-      title: "Agregado",
-      text: "Se ha guardado el producto de manera correcta",
+      title: "Comprado",
+      text: "Se ha comprado de manera exitosa en un lapso de 72 se comunicaran con usted\n¡Gracias Por Su compra!",
       icon: "success",
       iconColor: "#6882b2",
       confirmButtonText: "Aceptar",
@@ -372,9 +407,11 @@ formulario.addEventListener("submit", async function (e) {
       if (result.isConfirmed) {
         const main = document.querySelector("body");
         main.classList.remove("active");
+        eliminarItems();
       } else if (result.isDismissed) {
+        localStorage.removeItem("id");
         const main = document.querySelector("body");
-        main.classList.remove("active");
+        eliminarItems();
       }
     });
   }
