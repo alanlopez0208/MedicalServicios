@@ -1,12 +1,12 @@
 obtenerInfo();
 getProductDestacados();
+getCategories();
 
 function getProductDestacados() {
   const contenedor = document.getElementById("slider");
   const catid = "390f513f-0524-11ee-86d1-0a002700000a";
 
   getAllProducts("/products/cat", catid, contenedor);
-  console.log(contenedor);
 }
 
 function obtenerInfo() {
@@ -27,4 +27,33 @@ function obtenerInfo() {
   };
 
   xhr.send();
+}
+
+async function getCategories() {
+  const categorias = await obtenerCategorias("/categories");
+
+  const contenedor = document.getElementById("container-card");
+
+  for (const key in categorias) {
+    if (Object.hasOwnProperty.call(categorias, key)) {
+      const categoria = categorias[key];
+
+      const elementoCategoria = document.createElement("div");
+      elementoCategoria.classList.add("card");
+
+      elementoCategoria.innerHTML = ` 
+      <di class="img-card">
+        <img src="img/catalogos/no-img.png" alt="" />
+      </di>
+      <div class="card-txt">
+        <a href="#">${categoria.label}</a
+        ><span class="icon">
+          <i class="fa-solid fa-arrow-right"></i>
+        </span>
+      </div>
+      `;
+
+      contenedor.appendChild(elementoCategoria);
+    }
+  }
 }

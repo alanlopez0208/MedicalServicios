@@ -5,6 +5,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     await obtenerCategory();
     await obtenerTodosProductos();
     eventoFiltrar();
+    const catalogo = await obtenerCatalogoVentas("/catalogues");
   } catch (error) {
     console.log(error);
   } finally {

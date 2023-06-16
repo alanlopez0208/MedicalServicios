@@ -177,3 +177,25 @@ async function obtenerIdProductos(API, categoriaId) {
     throw error;
   }
 }
+
+async function obtenerCatalogoVentas(API) {
+  const cuerpo = {};
+  const url = APIURL + API;
+  try {
+    const response = await fetch(url, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(cuerpo),
+    });
+
+    const data = await response.json();
+    const elemento = data.find((objeto) => objeto.name === "Venta");
+
+    return elemento.id;
+  } catch (error) {
+    alert("Hubo el siguiente error " + error);
+    console.log(error);
+  }
+}

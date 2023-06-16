@@ -113,6 +113,8 @@ main {
 
 .container-card {
   display: flex;
+  overflow-y: auto;
+  white-space: nowrap;
 }
 
 .card {
