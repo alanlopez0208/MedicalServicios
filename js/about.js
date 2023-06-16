@@ -24,3 +24,35 @@ function onRequestHandler() {
   };
   xhr.send();
 }
+
+function eliminarDuplicados(array) {
+  const aux = {};
+  return array.filter((obj) => {
+    const key = JSON.stringify(obj);
+
+    const encontrado = aux[key];
+
+    if (!encontrado) {
+      aux[key] = true;
+      return true;
+    }
+
+    return false;
+  });
+}
+
+// Ejemplo de uso
+const array = [
+  { id: 1, nombre: "Objeto 1" },
+  { id: 2, nombre: "Objeto 2" },
+  { id: 1, nombre: "Objeto 1" },
+  { id: 3, nombre: "Objeto 3" },
+
+  { id: 1, nombre: "Objeto 1" },
+  { id: 4, nombre: "Objeto 4" },
+  { id: 2, nombre: "Objeto 2" },
+  { id: 1, nombre: "Objeto 1" },
+];
+
+const arraySinDuplicados = eliminarDuplicados(array);
+console.log(arraySinDuplicados);
