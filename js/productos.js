@@ -199,3 +199,35 @@ async function obtenerCatalogoVentas(API) {
     console.log(error);
   }
 }
+
+async function getTodosProductos(API) {
+  const categorias = await obtenerCategorias("/categories");
+  let productos = [];
+  for (const key in categorias) {
+    if (Object.hasOwnProperty.call(categorias, key)) {
+      const categoria = categorias[key];
+
+      const cuerpo = {
+        catalogueId: "580739e4-051d-11ee-86d1-0a002700000a",
+        categoryId: categoria["id"],
+      };
+      const url = APIURL + API;
+
+      try {
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(cuerpo),
+        });
+        const data = await response.json();
+
+        productos = productos.concat(data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+  return productos;
+}

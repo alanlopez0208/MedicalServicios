@@ -2,8 +2,10 @@ window.addEventListener("DOMContentLoaded", async (event) => {
   const progreso = document.getElementById("dots");
   try {
     progreso.style.display = "block";
+    await cargarSlider();
     await obtenerCategory();
     await obtenerTodosProductos();
+
     eventoFiltrar();
     const catalogo = await obtenerCatalogoVentas("/catalogues");
   } catch (error) {
@@ -46,25 +48,31 @@ async function obtenerCategory() {
   contenedorCategorias.appendChild(ul);
 }
 
-//Agregamos el script del JQuery UI
-$(function () {
-  $("#slider-range").slider({
-    range: true,
-    step: 100,
-    min: 0,
-    max: 5000,
-    values: [1000, 3500],
-    slide: function (event, ui) {
-      $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
-    },
+async function cargarSlider() {
+  await $(function () {
+    $("#slider-range").slider({
+      range: true,
+      step: 200,
+      min: 0,
+      max: 50000,
+      values: [0, 50000],
+      slide: function (event, ui) {
+        $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+      },
+    });
+
+    $("#amount").val(
+      "$" +
+        $("#slider-range").slider("values", 0) +
+        " - $" +
+        $("#slider-range").slider("values", 1)
+    );
+
+    $("#slider-range").on("slidechange", async function (event, ui) {
+      await filtrar();
+    });
   });
-  $("#amount").val(
-    "$" +
-      $("#slider-range").slider("values", 0) +
-      " - $" +
-      $("#slider-range").slider("values", 1)
-  );
-});
+}
 
 function eliminarCategoria(categoria) {
   const productos = document.querySelectorAll(
@@ -144,35 +152,57 @@ function eventoFiltrar() {
   for (let index = 0; index < checkboxes.length; index++) {
     const checkbox = checkboxes[index];
 
-    const progreso = document.getElementById("dots");
     checkbox.addEventListener("click", async function (event) {
-      const contenedor = document.getElementById("card-container");
-      let elementos = [];
-      await eliminarProductos();
-      try {
-        progreso.style.display = "block";
-        const clases = checkbox.className.split(" ");
-        const claseDeseada = clases[1];
-
-        switch (claseDeseada) {
-          case "checkbox-categoria":
-            const checkboxesPalomeados = document.querySelectorAll(
-              "input.checkbox-categoria:checked"
-            );
-            let elemento = await obtenerProductosCategorias(
-              checkboxesPalomeados
-            );
-            elementos = elementos.concat(elemento);
-            break;
-        }
-
-        agregarProducto(elementos, contenedor);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        progreso.style.display = "none";
-      }
+      await filtrar();
     });
+  }
+}
+
+async function filtrar() {
+  const progreso = document.getElementById("dots");
+  const contenedor = document.getElementById("card-container");
+  let elementos = [];
+  await eliminarProductos();
+
+  try {
+    progreso.style.display = "block";
+    const checkboxesPalomeados = document.querySelectorAll(
+      "input.checkbox-categoria:checked"
+    );
+
+    for (let index = 0; index < checkboxesPalomeados.length; index++) {
+      const element = checkboxesPalomeados[index];
+      const clase = element.classList[1];
+
+      switch (clase) {
+        case "checkbox-categoria":
+          let elemento = await obtenerProductosCategorias(checkboxesPalomeados);
+          elementos = elementos.concat(elemento);
+          break;
+      }
+    }
+
+    const sliderMin = $("#slider-range").slider("values", 0);
+    const sliderMax = $("#slider-range").slider("values", 1);
+
+    if (elementos.length != 0) {
+      const productosFiltrados = elementos.filter((producto) => {
+        return producto.price >= sliderMin && producto.price <= sliderMax;
+      });
+      await agregarProducto(productosFiltrados, contenedor);
+    } else {
+      let allProducts = await getTodosProductos("/products/cat");
+      elementos = elementos.concat(allProducts);
+      console.log(elementos);
+      const productosFiltrados = elementos.filter((producto) => {
+        return producto.price >= sliderMin && producto.price <= sliderMax;
+      });
+      await agregarProducto(productosFiltrados, contenedor);
+    }
+  } catch (error) {
+    console.log(error);
+  } finally {
+    progreso.style.display = "none";
   }
 }
 
