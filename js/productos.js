@@ -1,8 +1,8 @@
 const APIURL = "http://api.medicalsantacruz.com";
 
-async function getAllProducts(API, categoria, contenedor) {
+async function getAllProducts(API, categoria, contenedor, catalogo) {
   const cuerpo = {
-    catalogueId: "580739e4-051d-11ee-86d1-0a002700000a",
+    catalogueId: catalogo,
     categoryId: categoria,
   };
 
@@ -124,11 +124,11 @@ async function enviarReservacion(API, reservacion) {
   }
 }
 
-async function obtenerCategorias(API) {
+async function obtenerCategorias(API, catalogo) {
   const url = APIURL + API;
 
   const cuerpo = {
-    catalogueId: "580739e4-051d-11ee-86d1-0a002700000a",
+    catalogueId: catalogo,
   };
 
   try {
@@ -147,11 +147,11 @@ async function obtenerCategorias(API) {
   }
 }
 
-async function obtenerIdProductos(API, categoriaId) {
+async function obtenerIdProductos(API, categoriaId, catalogo) {
   const url = APIURL + API;
 
   const cuerpo = {
-    catalogueId: "580739e4-051d-11ee-86d1-0a002700000a",
+    catalogueId: catalogo,
     categoryId: categoriaId,
   };
 
@@ -200,15 +200,37 @@ async function obtenerCatalogoVentas(API) {
   }
 }
 
-async function getTodosProductos(API) {
-  const categorias = await obtenerCategorias("/categories");
+async function obtenerCatalogoRentas(API) {
+  const cuerpo = {};
+  const url = APIURL + API;
+  try {
+    const response = await fetch(url, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(cuerpo),
+    });
+
+    const data = await response.json();
+    const elemento = data.find((objeto) => objeto.name === "Renta");
+
+    return elemento.id;
+  } catch (error) {
+    alert("Hubo el siguiente error " + error);
+    console.log(error);
+  }
+}
+
+async function getTodosProductos(API, catalogo) {
+  const categorias = await obtenerCategorias("/categories/all", catalogo);
   let productos = [];
   for (const key in categorias) {
     if (Object.hasOwnProperty.call(categorias, key)) {
       const categoria = categorias[key];
 
       const cuerpo = {
-        catalogueId: "580739e4-051d-11ee-86d1-0a002700000a",
+        catalogueId: catalogo,
         categoryId: categoria["id"],
       };
       const url = APIURL + API;

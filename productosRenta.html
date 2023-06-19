@@ -35,6 +35,13 @@
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
   </head>
   <body>
+    <div class="progress" id="dots">
+      <div class="dots">
+        <svg>
+          <circle cx="70" cy="70" r="70"></circle>
+        </svg>
+      </div>
+    </div>
     <!-- Empieza la cabecera -->
     <header>
       <a href="index.html" class="logo">
@@ -114,13 +121,13 @@
                     </button>
                   </div>
 
-                  <div class="filtros-checkbox">
-                    <ul>
+                  <div class="filtros-checkbox" id="filtros-Categorias">
+                    <!-- <ul>
                       <li>
                         <input
                           type="checkbox"
                           id="categoria1"
-                          class="checkbox-filter checkbox-categoria"
+                          class="checkbox-filter filter-categorias"
                           value="movilidad"
                         />
                         <label for="categoria1">Movilidad</label>
@@ -129,8 +136,8 @@
                         <input
                           type="checkbox"
                           id="categoria2"
-                          class="checkbox-filter"
-                          value="movilidad"
+                          class="checkbox-filter checkbox-categoria"
+                          value="390f513f-0520-11ee-86d1-0a002700000a"
                         />
                         <label for="categoria2">Cuidado Personal</label>
                       </li>
@@ -138,8 +145,8 @@
                         <input
                           type="checkbox"
                           id="categoria3"
-                          class="checkbox-filter"
-                          value="movilidad"
+                          class="checkbox-filter checkbox-categoria"
+                          value="390f513f-0523-11ee-86d1-0a002700000a"
                         />
                         <label for="categoria3">Insumos Medicos</label>
                       </li>
@@ -147,12 +154,12 @@
                         <input
                           type="checkbox"
                           id="categoria4"
-                          class="checkbox-filter"
-                          value="movilidad"
+                          class="checkbox-filter checkbox-categoria"
+                          value="390f513f-0524-11ee-86d1-0a002700000a"
                         />
                         <label for="categoria4">Ortopedia Blanca</label>
                       </li>
-                    </ul>
+                    </ul> -->
                   </div>
                   <div class="separador"></div>
                 </div>
@@ -164,7 +171,6 @@
                       <i id="chevron-up" class="fa-solid fa-chevron-up"></i>
                     </button>
                   </div>
-
                   <div class="filtros-checkbox">
                     <p>
                       <input type="text" id="amount" readonly />
@@ -184,26 +190,24 @@
                       ></span>
                     </div>
                   </div>
-                  <div class="separador"></div>
+                  <!-- <div class="separador"></div> -->
                 </div>
-                <div class="filtro-marca filtro-card" id="filtro-marca">
+                <!-- <div class="filtro-marca filtro-card">
                   <div class="filtro-titulo">
                     <button class="filtro-boton" onclick="abrirFiltros(this)">
                       Marca
                       <i class="fa-solid fa-chevron-down"></i>
                       <i id="chevron-up" class="fa-solid fa-chevron-up"></i>
                     </button>
-                    <!-- <a href="#">Marca</a>
-                   
-                     -->
                   </div>
+
                   <div class="filtros-checkbox">
                     <ul>
                       <li>
                         <input
                           type="checkbox"
                           id="categoria5"
-                          class="checkbox-filter"
+                          class="checkbox-filter checkbox-marca"
                           value="movilidad"
                         />
                         <label for="categoria5">Mueller</label>
@@ -212,7 +216,7 @@
                         <input
                           type="checkbox"
                           id="categoria6"
-                          class="checkbox-filter"
+                          class="checkbox-filter checkbox-marca"
                           value="movilidad"
                         />
                         <label for="categoria6">Bauerfeind</label>
@@ -221,7 +225,7 @@
                         <input
                           type="checkbox"
                           id="categoria7"
-                          class="checkbox-filter"
+                          class="checkbox-filter checkbox-marca"
                           value="movilidad"
                         />
                         <label for="categoria7">Rehband</label>
@@ -230,18 +234,31 @@
                         <input
                           type="checkbox"
                           id="categoria8"
-                          class="checkbox-filter"
+                          class="checkbox-filter checkbox-marca"
                           value="movilidad"
                         />
                         <label for="categoria8">ProTec</label>
                       </li>
                     </ul>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
             <div class="productos-container">
-              <div class="card-container">
+              <div class="card-container" id="card-container">
+                <!-- <div class="card-swiper">
+                  <div class="swiper-card-img">
+                    <img src="img/muletas.png" alt="" />
+                  </div>
+                  <div class="swiper-card-txt">
+                    <a href="#">Muletas</a>
+                    <div class="card-precios">
+                      <p>$1500</p>
+                      <del>$1700</del>
+                    </div>
+                    <a href="#" class="card-boton"><button>Agregar</button></a>
+                  </div>
+                </div>
                 <div class="card-swiper">
                   <div class="swiper-card-img">
                     <img src="img/muletas.png" alt="" />
@@ -252,14 +269,20 @@
                       <p>$1500</p>
                       <del>$1700</del>
                     </div>
-                    <a href="#" class="card-boton"
-                      ><button
-                        onclick="agregarCarrito(this)"
-                        data-producto-id="1"
-                      >
-                        Agregar
-                      </button></a
-                    >
+                    <a href="#" class="card-boton"><button>Agregar</button></a>
+                  </div>
+                </div>
+                <div class="card-swiper">
+                  <div class="swiper-card-img">
+                    <img src="img/muletas.png" alt="" />
+                  </div>
+                  <div class="swiper-card-txt">
+                    <a href="#">Muletas</a>
+                    <div class="card-precios">
+                      <p>$1500</p>
+                      <del>$1700</del>
+                    </div>
+                    <a href="#" class="card-boton"><button>Agregar</button></a>
                   </div>
                 </div>
                 <div class="card-swiper">
@@ -303,19 +326,19 @@
                 </div>
                 <div class="card-swiper">
                   <div class="swiper-card-img">
-                    <img src="img/productos/muletas.png" alt="" />
+                    <img src="img/muletas.png" alt="" />
                   </div>
                   <div class="swiper-card-txt">
-                    <a href="#">Muletas</a>
+                    <h3>Muletas</h3>
                     <div class="card-precios">
                       <p>$1500</p>
                       <del>$1700</del>
                     </div>
                     <a href="#" class="card-boton"><button>Agregar</button></a>
                   </div>
-                </div>
+                </div> -->
               </div>
-              <div class="pagination">
+              <!-- <div class="pagination">
                 <p>
                   Mostrando <strong>1-19</strong> Productos de
                   <strong>625</strong>
@@ -331,7 +354,7 @@
                     <li><i class="fa-solid fa-chevron-right"></i></li>
                   </a>
                 </ul>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -392,7 +415,8 @@
   </body>
   <script src="js/header.js"></script>
   <script src="js/footer.js"></script>
-
+  <script src="js/productos.js"></script>
   <script src="js/localstorage.js"></script>
+  <script src="js/productosRenta.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>

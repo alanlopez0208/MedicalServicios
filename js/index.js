@@ -6,7 +6,12 @@ function getProductDestacados() {
   const contenedor = document.getElementById("slider");
   const catid = "390f513f-0524-11ee-86d1-0a002700000a";
 
-  getAllProducts("/products/cat", catid, contenedor);
+  getAllProducts(
+    "/products/cat",
+    catid,
+    contenedor,
+    "580739e4-051d-11ee-86d1-0a002700000a"
+  );
 }
 
 function obtenerInfo() {
@@ -30,7 +35,7 @@ function obtenerInfo() {
 }
 
 async function getCategories() {
-  const categorias = await obtenerCategorias("/categories");
+  const categorias = await obtenerCategorias("/categories/all");
 
   const contenedor = document.getElementById("container-card");
 

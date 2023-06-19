@@ -4,7 +4,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
   const progreso = document.getElementById("dots");
   try {
     progreso.style.display = "block";
-    catalogo = await obtenerCatalogoVentas("/catalogues/all");
+    catalogo = await obtenerCatalogoRentas("/catalogues/all");
     await cargarSlider();
     await obtenerCategory();
     await obtenerTodosProductos();
@@ -181,7 +181,6 @@ async function filtrar() {
       switch (clase) {
         case "checkbox-categoria":
           let elemento = await obtenerProductosCategorias(checkboxesPalomeados);
-          console.log(elemento);
           elementos = elementos.concat(elemento);
           break;
       }
@@ -195,8 +194,6 @@ async function filtrar() {
         return producto.price >= sliderMin && producto.price <= sliderMax;
       });
       await agregarProducto(productosFiltrados, contenedor);
-      const divElement = document.getElementById("card-container");
-
       if (divElement.hasChildNodes()) {
         console.log("El div tiene hijos.");
         console.log(divElement);
