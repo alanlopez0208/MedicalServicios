@@ -35,7 +35,10 @@ function obtenerInfo() {
 }
 
 async function getCategories() {
-  const categorias = await obtenerCategorias("/categories/all");
+  const categorias = await obtenerCategorias(
+    "/categories/all",
+    "580739e4-051d-11ee-86d1-0a002700000a"
+  );
 
   const contenedor = document.getElementById("container-card");
 
@@ -48,7 +51,7 @@ async function getCategories() {
 
       elementoCategoria.innerHTML = ` 
       <di class="img-card">
-        <img src="img/catalogos/no-img.png" alt="" />
+        <img src="${categoria.imgPath}" alt="" />
       </di>
       <div class="card-txt">
         <a href="#">${categoria.label}</a

@@ -47,7 +47,7 @@ async function obtenerCarrito() {
       for (let clave in ids) {
         if (Object.hasOwnProperty.call(ids, clave)) {
           const elemento = ids[clave];
-          const data = await getProduct(`/products`, clave, elemento);
+          const data = await getProduct(`/products/id`, clave, elemento);
           const producto = crearFilaProducto(data, elemento["cantidad"], clave);
 
           tbody.appendChild(producto);
@@ -247,7 +247,7 @@ async function obtenerTotal() {
     for (const clave in id) {
       if (Object.hasOwnProperty.call(id, clave)) {
         const elemento = id[clave];
-        const producto = await getProduct("/products", clave, elemento);
+        const producto = await getProduct("/products/id", clave, elemento);
 
         total = elemento["cantidad"] * producto.price;
       }
@@ -347,14 +347,14 @@ formulario.addEventListener("submit", async function (e) {
   progreso.style.display = "block";
   var datos = new FormData(formulario);
 
-  let apellidos = datos.get("lastName");
-  let apellidosArray = apellidos.split(" ");
+  let apellidoPaterno = datos.get("lastNameFirst");
+  let apellidosMaterno = datos.get("lastNameSecond");
 
   const persona = {
     customer: {
       name: datos.get("name"),
-      firstSurname: apellidosArray[0],
-      lastSurname: apellidosArray[1],
+      firstSurname: apellidoPaterno,
+      lastSurname: apellidosMaterno,
       email: datos.get("email"),
       mobile: datos.get("phone"),
       phone: datos.get("smartphone"),
