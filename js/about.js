@@ -22,7 +22,7 @@ function onRequestHandler() {
       }
     })
     .then((data) => {
-      document.getElementById("descripcion").innerText = data.description;
+      document.getElementById("descripcion").innerText = data.about;
       document.getElementById("textMision").innerText = data.mission;
       document.getElementById("textVision").innerText = data.vision;
     })

@@ -70,6 +70,15 @@ main {
   align-items: center;
 }
 
+.information a {
+  text-decoration: none;
+  color: black;
+}
+
+.information .correo {
+  text-decoration: underline;
+}
+
 .information .icon {
   margin-right: 10px;
   color: var(--card-boton);

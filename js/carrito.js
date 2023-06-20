@@ -152,7 +152,8 @@ function incrementar(button, idProducto, clave) {
   cantidadInput.value = cantidad;
 
   const nuevoPrecioTotal = precioUnitario * cantidad;
-  fila.querySelector(".PrecioTotal").textContent = nuevoPrecioTotal.toFixed(2);
+  fila.querySelector(".PrecioTotal").textContent =
+    "$" + nuevoPrecioTotal.toFixed(2);
   var local = localStorage.getItem("id");
   var ids = JSON.parse(local);
 
@@ -160,7 +161,7 @@ function incrementar(button, idProducto, clave) {
     const p = ids[clave];
 
     p["cantidad"] = cantidad;
-    // Vuelve a almacenar el objeto actualizado en el localStorage
+
     localStorage.setItem("id", JSON.stringify(ids));
   }
 
@@ -189,7 +190,7 @@ function decrementar(button, idProducto, clave) {
     cantidadInput.value = cantidad;
     const nuevoPrecioTotal = precioUnitario * cantidad;
     fila.querySelector(".PrecioTotal").textContent =
-      nuevoPrecioTotal.toFixed(2);
+      "$" + nuevoPrecioTotal.toFixed(2);
 
     var local = localStorage.getItem("id");
     var ids = JSON.parse(local);
@@ -247,9 +248,10 @@ async function obtenerTotal() {
     for (const clave in id) {
       if (Object.hasOwnProperty.call(id, clave)) {
         const elemento = id[clave];
+
         const producto = await getProduct("/products/id", clave, elemento);
 
-        total = elemento["cantidad"] * producto.price;
+        total += elemento["cantidad"] * producto.price;
       }
     }
   } catch (error) {
