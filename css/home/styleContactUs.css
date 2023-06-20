@@ -79,6 +79,10 @@ main {
   text-decoration: underline;
 }
 
+.information .telefono {
+  text-decoration: underline;
+}
+
 .information .icon {
   margin-right: 10px;
   color: var(--card-boton);
