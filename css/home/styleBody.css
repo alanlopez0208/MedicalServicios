@@ -151,11 +151,7 @@ main {
   transition-duration: 0.5s;
 }
 
-.card-txt a {
-  color: var(--card-hover);
-  font-weight: 600;
-}
-.card-txt i {
+.card-txt p {
   color: var(--card-boton);
   font-weight: 600;
 }
@@ -167,10 +163,10 @@ main {
 }
 
 .card:hover .card-txt {
-  transform: translateX(-10px);
+  transform: scale(1.1);
   transition-duration: 1s;
 }
-.card:hover .card-txt a {
+.card:hover .card-txt p {
   color: var(--card-boton);
   transition-duration: 1s;
 }

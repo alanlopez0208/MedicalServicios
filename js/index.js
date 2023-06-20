@@ -57,10 +57,7 @@ async function getCategories() {
         <img src="${categoria.imgPath}" alt="" />
       </di>
       <div class="card-txt">
-        <a href="#">${categoria.label}</a
-        ><span class="icon">
-          <i class="fa-solid fa-arrow-right"></i>
-        </span>
+        <p>${categoria.label}</p>
       </div>
       `;
 
