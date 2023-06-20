@@ -5,7 +5,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   if (mensaje === "success") {
     Swal.fire({
       title: "Comprado",
-      text: "Se ha comprado de manera exitosa en un lapso de 72 se comunicarán con usted. ¡Gracias por su compra!",
+      text: "Se ha enviado su mensaje de 72 se comunicarán con usted. ¡Gracias por su compra!",
       icon: "success",
       iconColor: "#6882b2",
       confirmButtonText: "Aceptar",
