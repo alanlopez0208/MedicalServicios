@@ -112,7 +112,7 @@
             <div class="contact-form">
               <span class="circle one"></span>
               <span class="circle two"></span>
-              <form action="index.html">
+              <form action="php/contact.php" method="POST">
                 <h2 class="title">Envianos un Mensaje</h2>
                 <div class="input-container">
                   <input
@@ -120,6 +120,7 @@
                     name="name"
                     class="input"
                     placeholder="Nombre"
+                    required
                   />
                 </div>
                 <div class="input-container">
@@ -128,6 +129,7 @@
                     name="email"
                     class="input"
                     placeholder="Correo"
+                    required
                   />
                 </div>
                 <div class="input-container">
@@ -136,16 +138,18 @@
                     name="phone"
                     class="input"
                     placeholder="Celular"
+                    required
                   />
                 </div>
                 <div class="input-container textarea">
                   <textarea
-                    name="message "
+                    name="message"
                     class="input"
                     placeholder="Mensaje "
+                    required
                   ></textarea>
                 </div>
-                <a href="about.html"><button class="boton">Enviar</button></a>
+                <button class="boton" type="submit">Enviar</button>
               </form>
             </div>
           </div>
@@ -166,8 +170,8 @@
         <div class="container">
           <div class="content text whatsapp-container">
             <h2>Habla con Nosotros en whatsapp Ahora Mismo</h2>
-            <a href="https://wa.me/6771087943" target="_blank">
-              <i class="fa-brands fa-whatsapp"></i>677-108-7943</a
+            <a href="https://wa.me/6181017643" target="_blank">
+              <i class="fa-brands fa-whatsapp"></i>618-101-7643</a
             >
           </div>
         </div>
@@ -218,6 +222,7 @@
     </footer>
     <!--Termina la seccion del footer-->
   </body>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="js/header.js"></script>
   <script src="js/contact.js"></script>
 </html>

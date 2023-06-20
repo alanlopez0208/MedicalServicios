@@ -1,4 +1,36 @@
 window.addEventListener("DOMContentLoaded", (event) => {
+  var urlParams = new URLSearchParams(window.location.search);
+  var mensaje = urlParams.get("mensaje");
+
+  if (mensaje === "success") {
+    Swal.fire({
+      title: "Comprado",
+      text: "Se ha comprado de manera exitosa en un lapso de 72 se comunicarán con usted. ¡Gracias por su compra!",
+      icon: "success",
+      iconColor: "#6882b2",
+      confirmButtonText: "Aceptar",
+      confirmButtonColor: "#6882b2",
+      customClass: {
+        title: "my-title-class",
+        confirmButton: "my-custom-button-class",
+        icon: "my-icon-class",
+      },
+    });
+  } else if (mensaje === "error") {
+    Swal.fire({
+      title: "Error",
+      text: "Ha ocurrido un error al almacenar los datos en la base de datos. Por favor, inténtelo nuevamente.",
+      icon: "error",
+      iconColor: "#6882b2",
+      confirmButtonText: "Aceptar",
+      confirmButtonColor: "#6882b2",
+      customClass: {
+        title: "my-title-class",
+        confirmButton: "my-custom-button-class",
+        icon: "my-icon-class",
+      },
+    });
+  }
   onRequestHandler();
   obtenerNosotros();
 });

@@ -14,24 +14,27 @@ function getProductDestacados() {
   );
 }
 
-function obtenerInfo() {
-  const API_URL = "http://localhost:5138";
+async function obtenerInfo() {
+  const API_URL = "http://api.medicalsantacruz.com";
 
   const xhr = new XMLHttpRequest();
 
-  xhr.open("GET", `${API_URL}/api/about`);
+  xhr.open("POST", `${API_URL}/info`);
+  xhr.setRequestHeader("Content-Type", "application/json");
 
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4 && xhr.status === 200) {
       const data = JSON.parse(xhr.response);
 
-      document.getElementById("banner_text").innerText = data.description;
+      document.getElementById("banner_text").innerText = data.welcome;
+
+      document.getElementById("featured").innerText = data.featured;
 
       document.getElementById("nosotros-texto").innerText = data.description;
     }
   };
 
-  xhr.send();
+  xhr.send(JSON.stringify({}));
 }
 
 async function getCategories() {
