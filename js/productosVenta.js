@@ -53,13 +53,20 @@ async function obtenerCategory() {
 }
 
 async function cargarSlider() {
+  let allProducts = await getTodosProductos("/products/cat", catalogo);
+  const maxPrice = allProducts.reduce((max, producto) => {
+    if (producto.price > max) {
+      return producto.price;
+    }
+    return max;
+  }, 0);
   await $(function () {
     $("#slider-range").slider({
       range: true,
       step: 200,
       min: 0,
-      max: 50000,
-      values: [0, 50000],
+      max: maxPrice,
+      values: [0, maxPrice],
       slide: function (event, ui) {
         $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
       },

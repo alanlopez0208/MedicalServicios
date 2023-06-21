@@ -53,6 +53,10 @@ async function obtenerCategory() {
 }
 
 async function cargarSlider() {
+  let allProducts = await getTodosProductos("/products/cat", catalogo);
+
+  console.log(allProducts);
+
   await $(function () {
     $("#slider-range").slider({
       range: true,
